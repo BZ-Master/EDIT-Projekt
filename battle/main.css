@@ -1,0 +1,68 @@
+#playerCard {
+    border-radius: 2.5%;
+}
+
+#enemyCard {
+    border-radius: 2.5%;
+}
+
+progress {
+    height: 25px;
+    width: auto;
+    margin-bottom: 10%;
+}
+
+progress[value] {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    border-radius: 2.5%;
+}
+
+#enemyCard progress::-webkit-progress-bar {
+    background-color: gray;
+    border-radius: 2.5px;
+}
+
+#enemyCard progress::-webkit-progress-value {
+    background-color: red;
+    border-radius: 2.5px;
+}
+
+#playerCard progress::-webkit-progress-bar {
+    background-color: gray;
+    border-radius: 2.5px;
+}
+
+#playerCard progress::-webkit-progress-value {
+    background-color: lime;
+    border-radius: 2.5px;
+}
+
+#playerHealth {
+    position: relative;
+    width: 100%;
+}
+
+#playerHealth::after {
+    content: attr(value);
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: white;
+}
+
+#enemyHealth {
+    position: relative;
+    width: 100%;
+}
+
+#enemyHealth::after {
+    content: attr(value);
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: white;
+}
