@@ -4,6 +4,8 @@ let runda = 1
 let counter = document.getElementById("runda")
 counter.innerText = runda
 
+let superChargeIndicator = document.getElementById("indicator")
+
 class Entity {
     constructor(health, damage) {
         this.health = health
@@ -21,6 +23,9 @@ class Enemy extends Entity {
     constructor(health, damage) {
         super(health, damage)
         this.update()
+
+        let enemyDmg = document.getElementById("enemyDmg")
+        enemyDmg.innerText = `Damage: ${this.damage}`
     }
 
     update() {
@@ -35,6 +40,9 @@ class Player extends Entity {
         super(health, damage)
         this.attackCount = 0
         this.update()
+
+        let playerDmg = document.getElementById("playerDmg")
+        playerDmg.innerText = `Damage: ${this.damage}`
     }
 
     update() {
@@ -62,6 +70,7 @@ class Player extends Entity {
                 this.attack(e)
             }
             this.attackCount = 0
+            superChargeIndicator.innerText = `Super charged: 0%`
             return true
         }
         alert("Can't use super")
@@ -71,6 +80,23 @@ class Player extends Entity {
 
 let p1 = new Player(100, 20)
 let e1 = new Enemy(100 + (runda - 1) * 10, 30 + (runda - 1) * 5)
+
+let playerImg = document.getElementById("playerImg")
+let enemyImg = document.getElementById("enemyImg")
+
+function damagedEnemy() {
+    enemyImg.classList.add("damaged")
+    setTimeout(() => {
+        enemyImg.classList.remove("damaged")
+    }, 1000)
+}
+
+function damagedPlayer() {
+    playerImg.classList.add("damaged")
+    setTimeout(() => {
+        playerImg.classList.remove("damaged")
+    }, 1000)
+}
 
 let attackButton = document.getElementById("attack")
 let healButton = document.getElementById("heal")
@@ -113,20 +139,32 @@ function enemyTurn() {
 
     else if (e1.health > 0 && p1.health > 0) {
         buttonAbility(false)
+
+        setTimeout(() => {
+            damagedPlayer()
+        }, 3000)
+
         setTimeout(() => {
             e1.attack(p1)
             buttonAbility(true)
-        }, 2000)
+        }, 4000)
     }
 
-    if (p1.health <= 0) {
-        buttonAbility(false)
-    }
+    setTimeout(() => {
+        if (p1.health <= 0) {
+            buttonAbility(false)
+            alert("YOU LOST")
+        }
+    }, 4010)
 }
 
 attackButton.addEventListener("click", () => {
     p1.attack(e1)
     p1.attackCount += 1
+    if (p1.attackCount <= 3) {
+        superChargeIndicator.innerText = `Super charged: ${Math.round((p1.attackCount/3)*100)}%`
+    }
+    damagedEnemy()
     enemyTurn()
 })
 
