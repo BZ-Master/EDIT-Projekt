@@ -14,29 +14,34 @@
 
 <body>
     <nav>
-        <div class="nav-wrapper black">
+        <div class="nav-wrapper grey darken-4">
             <a href="#" class="brand-logo center">Projekt</a>
         </div>
     </nav>
     <br>
     <div class="container">
         <div class="row">
-            <div class="col s5 m4 l2 grey" id="playerCard">
+            <div class="col s4 m3 l3 grey" id="playerCard">
                 <h5 class="center-align col s12 indigo-text"><b>YOU</b></h5>
                 <progress value="0" max="100" id="playerHealth" class="col s12"></progress>
             </div>
 
-            <div class="col s5 m4 l2 offset-m4 offset-l8 offset-s2 grey" id="enemyCard">
+            <div class="col s2 m4 l4 offset-m1 offset-s1 offset-l1" id = "counter">
+                <h5 class="center-align">Wave</h5>
+                <h4 id = "runda" class="center-align"></h4>
+            </div>
+
+            <div class="col s4 m3 l3 grey offset-m1 offset-s1 offset-l1" id="enemyCard">
                 <h5 class="center-align col s12 red-text" id="enemyName"><b>ENEMY</b></h5>
                 <progress value="0" max="100" id="enemyHealth" class="col s12"></progress>
             </div>
         </div>
 
-        <div class="row">
-            <button class="btn waves-effect waves-light red" id="attack">A</button>
-            <button class="btn waves-effect waves-light red" id="heal">H</button>
-            <button class="btn waves-effect waves-light red" id="shield">S</button>
-            <button class="btn waves-effect waves-light red" id="superAttack">SA</button>
+        <div class="row center-align">
+            <button class="btn waves-effect waves-light grey darken-2" id="attack">A</button>
+            <button class="btn waves-effect waves-light grey darken-2" id="heal">H</button>
+            <button class="btn waves-effect waves-light grey darken-2" id="shield">S</button>
+            <button class="btn waves-effect waves-light grey darken-2" id="superAttack">SA</button>
         </div>
     </div>
 

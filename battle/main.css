@@ -66,3 +66,8 @@ progress[value] {
     transform: translate(-50%, -50%);
     color: white;
 }
+
+#counter{
+    background-color: lightgrey;
+    border-radius: 2.5%;
+}

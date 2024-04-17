@@ -1,9 +1,14 @@
 M.AutoInit()
 
+let runda = 1
+let counter = document.getElementById("runda")
+counter.innerText = runda
+
 class Entity {
     constructor(health, damage) {
         this.health = health
         this.damage = damage
+        this.maxHealth = health
     }
 
     attack(p2) {
@@ -21,6 +26,7 @@ class Enemy extends Entity {
     update() {
         let healthBar = document.getElementById("enemyHealth")
         healthBar.value = this.health
+        healthBar.max = this.maxHealth
     }
 }
 
@@ -34,6 +40,7 @@ class Player extends Entity {
     update() {
         let healthBar = document.getElementById("playerHealth")
         healthBar.value = this.health
+        healthBar.max = this.maxHealth
     }
 
     heal() {
@@ -50,7 +57,7 @@ class Player extends Entity {
     }
 
     superAttack(e) {
-        if (this.attackCount == 3) {
+        if (this.attackCount = 3) {
             for (let i = 0; i < 5; i++) {
                 this.attack(e)
             }
@@ -63,15 +70,26 @@ class Player extends Entity {
 }
 
 let p1 = new Player(100, 20)
-let e1 = new Enemy(100, 30)
+let e1 = new Enemy(100 + (runda - 1) * 10, 30 + (runda - 1) * 5)
 
 let attackButton = document.getElementById("attack")
 let healButton = document.getElementById("heal")
 let shieldButton = document.getElementById("shield")
 let superButton = document.getElementById("superAttack")
 
-function enemyTurn() {
-    if (e1.health > 0) {
+function buttonAbility(bool) {
+    if (bool) {
+        attackButton.disabled = false
+        attackButton.classList.remove('disabled')
+        healButton.disabled = false
+        healButton.classList.remove('disabled')
+        shieldButton.disabled = false
+        shieldButton.classList.remove('disabled')
+        superButton.disabled = false
+        superButton.classList.remove('disabled')
+    }
+
+    else {
         attackButton.disabled = true
         attackButton.classList.add('disabled')
         healButton.disabled = true
@@ -80,21 +98,30 @@ function enemyTurn() {
         shieldButton.classList.add('disabled')
         superButton.disabled = true
         superButton.classList.add('disabled')
+    }
+}
+
+function enemyTurn() {
+    if (e1.health <= 0) {
+        runda++
+        e1 = new Enemy(100 + (runda - 1) * 10, 30 + (runda - 1) * 5)
+        e1.update()
+        counter.innerText = runda
+        alert(`Wave ${runda} completed!`)
+        return
+    }
+
+    else if (e1.health > 0 && p1.health > 0) {
+        buttonAbility(false)
         setTimeout(() => {
             e1.attack(p1)
-            attackButton.disabled = false
-            attackButton.classList.remove('disabled')
-            healButton.disabled = false
-            healButton.classList.remove('disabled')
-            shieldButton.disabled = false
-            shieldButton.classList.remove('disabled')
-            superButton.disabled = false
-            superButton.classList.remove('disabled')
+            buttonAbility(true)
         }, 2000)
     }
 
-    else
-        alert("YOU WIN")
+    if (p1.health <= 0) {
+        buttonAbility(false)
+    }
 }
 
 attackButton.addEventListener("click", () => {
