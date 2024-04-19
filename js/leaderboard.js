@@ -18,10 +18,9 @@ function getPlayers() {
                 score: doc.data().score
             })
         })
-    }))
+    })).then(processPlayers())
 
     console.log(players)
-    processPlayers()
 
     // for (let i = 0; i < players.length; i++) {
     //     for (let j = i; j < players.length; j++) {
