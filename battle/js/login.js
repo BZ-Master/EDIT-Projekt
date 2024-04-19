@@ -38,7 +38,7 @@ function otvoriPrijavu() {
                     <button class="btn waves-effect waves-light grey darken-2 col s6 m4 l4 offset-m4 offset-l4 offset-s3" id="login">Login</button>
                 </div>
                 <div class="row">
-                    <button class="btn waves-effect waves-light grey darken-2 col s6 m4 l4 offset-m4 offset-l4 offset-s3">Register</button>
+                    <button class="btn waves-effect waves-light grey darken-2 col s6 m4 l4 offset-m4 offset-l4 offset-s3" id="register">Register</button>
                 </div>
             </div>
         </div>
@@ -48,19 +48,12 @@ function otvoriPrijavu() {
         let name = document.getElementById("username").value
         let pass = document.getElementById("password").value
 
-        console.log(name, pass)
-
         let prijava = false
 
-        database.collection("Korisnici").get().then((querySnapshot) => {
-            querySnapshot.forEach((doc) => {
-                podaci = doc.data()
-                console.log(podaci)
-
-                if (podaci.username == name && pass == podaci.password) {
-                    prijava = true
-                }
-            });
+        database.collection("Korisnici").where("username", "==", name).where("password", "==", pass).get().then(function (querySnapshot) {
+            querySnapshot.forEach(function (doc) {
+              prijava = true
+            })
 
             if (prijava) {
                 alert("Uspjesna prijava")
@@ -72,8 +65,37 @@ function otvoriPrijavu() {
             }
 
             else {
-                alert("Pogresno ime ili lozinka")
+                alert("Pogresno ime ili lozinka!")
             }
-        });
+        })
+    })
+
+    document.getElementById("register").addEventListener("click", () => {
+        let name = document.getElementById("username").value
+        let pass = document.getElementById("password").value
+
+        let korisnici = database.collection("Korisnici")
+
+        let novi = true
+
+        korisnici.where("username", "==", name).get().then((querySnapshot => {
+            querySnapshot.forEach(doc => {
+                if (doc.data().username == name) {
+                    novi = false
+                }
+            })
+
+            if (novi) {
+                korisnici.add({
+                    username: name,
+                    password: pass,
+                    score: 0
+                })
+            }
+
+            else {
+                alert("Korisnik s tim imenom već postoji!")
+            }
+        }))
     })
 }
