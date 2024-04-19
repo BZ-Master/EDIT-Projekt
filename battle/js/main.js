@@ -36,8 +36,11 @@ class Enemy extends Entity {
 }
 
 class Player extends Entity {
-    constructor(health, damage) {
+    constructor(health, damage, shield, heal) {
         super(health, damage)
+        this.shieldPercent = shield
+        this.healIncrease = heal
+        this.superAttackMultiplier = 3
         this.attackCount = 0
         this.update()
 
@@ -52,21 +55,21 @@ class Player extends Entity {
     }
 
     heal() {
-        this.health += 40
+        this.health += this.healIncrease
         this.update()
     }
 
     shield(e) {
         this.health += e.damage
         setTimeout(() => {
-            this.health -= Math.floor(e.damage / 2)
+            this.health -= Math.floor(e.damage * this.shieldPercent)
             this.update()
         }, 2001)
     }
 
     superAttack(e) {
         if (this.attackCount = 3) {
-            for (let i = 0; i < 5; i++) {
+            for (let i = 0; i < this.superAttackMultiplier; i++) {
                 this.attack(e)
             }
             this.attackCount = 0
@@ -78,7 +81,7 @@ class Player extends Entity {
     }
 }
 
-let p1 = new Player(100, 20)
+let p1 = new Player(100, 20, 0.5, 40)
 let e1 = new Enemy(100 + (runda - 1) * 10, 30 + (runda - 1) * 5)
 
 let playerImg = document.getElementById("playerImg")
@@ -162,7 +165,7 @@ attackButton.addEventListener("click", () => {
     p1.attack(e1)
     p1.attackCount += 1
     if (p1.attackCount <= 3) {
-        superChargeIndicator.innerText = `Super charged: ${Math.round((p1.attackCount/3)*100)}%`
+        superChargeIndicator.innerText = `Super charged: ${Math.round((p1.attackCount / 3) * 100)}%`
     }
     damagedEnemy()
     enemyTurn()

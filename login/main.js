@@ -16,6 +16,8 @@ document.getElementById("login").addEventListener("click", () => {
     let name = document.getElementById("username").value
     let pass = document.getElementById("password").value
 
+    console.log(name, pass)
+
     let prijava = false
 
     database.collection("Korisnici").get().then((querySnapshot) => {
@@ -23,7 +25,7 @@ document.getElementById("login").addEventListener("click", () => {
             podaci = doc.data()
             console.log(podaci)
 
-            if (podaci.Ime == name && pass == podaci.Lozinka) {
+            if (podaci.username == name && pass == podaci.password) {
                 prijava = true
             }
         });

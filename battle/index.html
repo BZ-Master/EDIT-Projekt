@@ -4,67 +4,127 @@
 <head>
     <meta charset='utf-8'>
     <meta http-equiv='X-UA-Compatible' content='IE=edge'>
-    <title>battle</title>
+    <title>Projekt</title>
     <meta name='viewport' content='width=device-width, initial-scale=1'>
     <link rel='stylesheet' type='text/css' media='screen' href='main.css'>
 
+    <!--Materialize-->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
+    <!--Firebase-->
+    <script src="https://www.gstatic.com/firebasejs/10.11.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.11.0/firebase-firestore-compat.js"></script>
 </head>
 
 <body>
     <nav>
         <div class="nav-wrapper grey darken-4">
+            <a href="#" data-target="slide-out" class="sidenav-trigger show-on-med-and-up"><i
+                    class="material-icons">menu</i></a>
             <a href="#" class="brand-logo center">Projekt</a>
         </div>
     </nav>
-    <br>
-    <div class="container" id="okvir">
-        <div class="container">
-            <div class="row">
-                <div class="col s4 m3 l3 grey" id="playerCard">
-                    <h5 class="center-align col s12 indigo-text"><b>YOU</b></h5>
-                    <progress value="0" max="100" id="playerHealth" class="col s12"></progress>
-                    <i><b>
-                            <p class="center-align" id="playerDmg">Damage: </p>
-                        </b></i>
+
+    <ul class="sidenav" id="slide-out">
+        <h5 class="center"><b>Projekt</b></h5>
+        <li><a href="#upgrades">Shop</a></li>
+        <li><a href="#okvir">Battle</a></li>
+        <li><a href="#leaderboard">Leaderboard</a></li>
+    </ul>
+
+    <script>
+
+    </script>
+
+    <div id="index-banner" class="parallax-container">
+        <div class="section no-pad-bot">
+            <div class="container">
+                <br><br>
+                <h1 class="center white-text"><b>PROJEKT</b></h1>
+                <h5 class="center white-text">Igra u kojoj se borite protiv beskonačnih valova neprijatelja.
+                    Ostvarite
+                    što bolji rezultat da bi se plasirali na ljestvicu najboljih igrača.</h5>
+                <div class="row center">
+                    <a class="waves-effect waves-light btn grey darken-2" href="#okvir">Igraj</a>
                 </div>
-
-                <div class="col s2 m4 l4 offset-m1 offset-s1 offset-l1" id="counter">
-                    <h5 class="center-align">Wave</h5>
-                    <h4 id="runda" class="center-align"></h4>
-                </div>
-
-                <div class="col s4 m3 l3 grey offset-m1 offset-s1 offset-l1" id="enemyCard">
-                    <h5 class="center-align col s12 red-text" id="enemyName"><b>ENEMY</b></h5>
-                    <progress value="0" max="100" id="enemyHealth" class="col s12"></progress>
-                    <i><b>
-                            <p class="center-align" id="enemyDmg">Damage: </p>
-                        </b></i>
-                </div>
-                <p class="center-align" id="indicator">Super charged: 0%</p>
-
-                <div class="row center-align" id="botuni">
-                    <button class="btn waves-effect waves-light grey darken-2" id="attack">A</button>
-                    <button class="btn waves-effect waves-light grey darken-2" id="heal">H</button>
-                    <button class="btn waves-effect waves-light grey darken-2" id="shield">S</button>
-                    <button class="btn waves-effect waves-light grey darken-2" id="superAttack">SA</button>
-                </div>
-
-                <div class="row">
-                    <div class="col s5">
-                        <img src="./player.jpg" class="responsive-img" id="playerImg">
-                    </div>
-
-                    <div class="col s5 offset-s2">
-                        <img src="./player.jpg" class="responsive-img" style="transform: scaleX(-1);" id="enemyImg">
-                    </div>
-                </div>
-
+                <br><br>
             </div>
         </div>
+        <div class="parallax"><img src="media/dungeon.png" id="background"></div>
     </div>
-    <script src='main.js'></script>
+
+    <br>
+
+    <div class="container" id="upgrades">
+        <h5 class="center">Unaprijedite svoje moći!</h5>
+        <p class="center">Ako ne vidite svoje moći potrebna je <a href="#okvir">prijava</a>!</p>
+    </div>
+
+    <br>
+
+    <div class="container" id="okvir">
+        <h5 class="center">Kako bi igrali igru potrebna je prijava</h5>
+        <div class="row center">
+            <a class="waves-effect waves-light btn grey darken-2" onclick=otvoriPrijavu()>Prijava</a>
+        </div>
+    </div>
+
+    <br>
+
+    <div id="leaderboard" class="container">
+        <h5 class="center"><b>Leaderboard</b></h5>
+        <table>
+            <thead>
+                <tr>
+                    <th>Username</th>
+                    <th>Score</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>ShadowSlayer330</td>
+                    <td>20</td>
+                </tr>
+                <tr>
+                    <td>MeowCat1111</td>
+                    <td>18</td>
+                </tr>
+        </table>
+    </div>
+
+    <br>
+
+    <footer class="page-footer grey darken-2">
+        <div class="container">
+            <div class="row">
+                <div class="col l6 s12">
+                    <h5 class="white-text">Projekt</h5>
+                    <p class="grey-text text-lighten-4">Igru je izradio Bartul Zavorović kao projekt za Edit Napredni
+                        tečaj.
+                    </p>
+                </div>
+                <div class="col l4 offset-l2 s12">
+                    <h5 class="white-text">Linkovi</h5>
+                    <ul>
+                        <li><a class="grey-text text-lighten-3" href="https://github.com/BZ-Master">GitHub</a></li>
+                        <li><a class="grey-text text-lighten-3"
+                                href="https://www.youtube.com/@digitalnadalmacija/featured">YouTube</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="footer-copyright">
+            <div class="container">
+                © 2024 Bartul Zavorović
+            </div>
+        </div>
+    </footer>
+
+    <script src="js/materialize.js"></script>
+    <script src='js/setup.js'></script>
+    <script src="js/login.js"></script>
 </body>
 
 </html>
