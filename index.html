@@ -27,16 +27,14 @@
         </div>
     </nav>
 
+
     <ul class="sidenav" id="slide-out">
         <h5 class="center"><b>Projekt</b></h5>
+        <li><a href="#instructions">Instructions</a></li>
         <li><a href="#upgrades">Shop</a></li>
         <li><a href="#okvir">Battle</a></li>
         <li><a href="#leaderboard">Leaderboard</a></li>
     </ul>
-
-    <script>
-
-    </script>
 
     <div id="index-banner" class="parallax-container">
         <div class="section no-pad-bot">
@@ -55,7 +53,26 @@
         <div class="parallax"><img src="media/dungeon.png" id="background"></div>
     </div>
 
-    <br>
+    <div class="container" id="instructions">
+        <ul class="collapsible">
+            <li>
+                <div class="collapsible-header"><i class="material-icons">book</i>How to play</div>
+                <div class="collapsible-body"><span>Lorem ipsum dolor sit amet consectetur adipisicing elit. Sit
+                        accusantium
+                        ducimus perferendis deserunt unde vitae esse, sint earum debitis aut laboriosam? Quo numquam
+                        tempora
+                        unde, totam voluptatem mollitia similique a.</span></div>
+            </li>
+            <li>
+                <div class="collapsible-header"><i class="material-icons">whatshot</i>Abilities</div>
+                <div class="collapsible-body"><span>Lorem ipsum dolor sit amet consectetur adipisicing elit. Sit
+                        accusantium
+                        ducimus perferendis deserunt unde vitae esse, sint earum debitis aut laboriosam? Quo numquam
+                        tempora
+                        unde, totam voluptatem mollitia similique a.</span></div>
+            </li>
+        </ul>
+    </div>
 
     <div class="container" id="upgrades">
         <h5 class="center">Unaprijedite svoje moći!</h5>
@@ -66,8 +83,47 @@
 
     <div class="container" id="okvir">
         <h5 class="center">Kako bi igrali igru potrebna je prijava</h5>
+        <br>
         <div class="row center">
-            <a class="waves-effect waves-light btn grey darken-2" onclick=otvoriPrijavu()>Prijava</a>
+            <a class="waves-effect waves-light btn modal-trigger grey darken-2" href="#prijava">Prijava</a>
+        </div>
+
+        <div id="prijava" class="modal">
+            <div class="container">
+                <h5 class="center">PRIJAVA</h5>
+                <p class="center">Unesite korisničko ime i lozinku. Ako želite kreirati novi račun prvo kliknite
+                    REGISTER, a onda LOGIN!
+                <p>
+                <div class="row">
+                    <div class="col s12 m6 l4 offset-m3 offset-l4">
+                        <form>
+                            <div class="row">
+                                <div class="input-field col s12">
+                                    <input placeholder="Username" id="username" type="text"
+                                        class="validate center-align">
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="input-field col s12">
+                                    <input placeholder="Password" id="password" type="password"
+                                        class="validate center-align">
+                                </div>
+                            </div>
+                        </form>
+                        <div class="row">
+                            <button
+                                class="btn waves-effect waves-light grey darken-2 col s6 m4 l4 offset-m4 offset-l4 offset-s3"
+                                id="login">Login</button>
+                        </div>
+                        <div class="row">
+                            <button
+                                class="btn waves-effect waves-light grey darken-2 col s6 m4 l4 offset-m4 offset-l4 offset-s3"
+                                id="register">Register</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 
@@ -120,4 +176,5 @@
     <script src="js/login.js"></script>
     <script src="js/leaderboard.js"></script>
 </body>
+
 </html>
