@@ -18,6 +18,7 @@ function processPlayers() {
     players.forEach(el => {
         tablica.innerHTML += `
         <tr>
+            <td>${players.indexOf(el) + 1}</td>
             <td>${el.username}</td>
             <td>${el.score}</td>
         </tr>`

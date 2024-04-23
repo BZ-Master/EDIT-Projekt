@@ -97,3 +97,16 @@ img {
     border-radius: 5px;
     border: solid 1px rgba(0, 0, 0, 0.25)
 }
+
+#coinCounter p {
+    font-size: x-large;
+    color: gold;
+    margin: 0;
+}
+
+#coinCounter {
+    border: 1px black solid;
+    border-radius: 5px;
+    background-color: darkgrey;
+    height: 45px;
+}
