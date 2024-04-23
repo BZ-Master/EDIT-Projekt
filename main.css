@@ -75,11 +75,14 @@ progress[value] {
     border: solid 1px rgba(0, 0, 0, 0.25);
 }
 
-#okvir {
+#game {
     background-color: rgba(158, 158, 158, 0.25);
     padding: 1%;
     border-radius: 5px;
-    border: solid 1px rgba(0, 0, 0, 0.25)
+    border: solid 1px rgba(0, 0, 0, 0.25);
+
+    overflow-y: auto;
+    max-height: 100vh;
 }
 
 img {
@@ -95,7 +98,11 @@ img {
     background-color: rgba(158, 158, 158, 0.25);
     padding: 1%;
     border-radius: 5px;
-    border: solid 1px rgba(0, 0, 0, 0.25)
+    border: solid 1px rgba(0, 0, 0, 0.25);
+    height: 400px;
+
+    overflow-y: auto;
+    max-height: 100vh;
 }
 
 #coinCounter p {
@@ -108,5 +115,5 @@ img {
     border: 1px black solid;
     border-radius: 5px;
     background-color: darkgrey;
-    height: 45px;
+    height: 3em;
 }
