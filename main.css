@@ -80,9 +80,6 @@ progress[value] {
     padding: 1%;
     border-radius: 5px;
     border: solid 1px rgba(0, 0, 0, 0.25);
-
-    overflow-y: auto;
-    max-height: 100vh;
 }
 
 img {
@@ -99,10 +96,7 @@ img {
     padding: 1%;
     border-radius: 5px;
     border: solid 1px rgba(0, 0, 0, 0.25);
-    height: 400px;
-
-    overflow-y: auto;
-    max-height: 100vh;
+    height: auto;
 }
 
 #coinCounter p {
@@ -116,4 +110,15 @@ img {
     border-radius: 5px;
     background-color: darkgrey;
     height: 3em;
+}
+
+nav {
+    position: fixed;
+    float: left;
+    margin: 0;
+    padding: 0;
+    top: 0;
+    left: 0;
+    list-style-type: none;
+    z-index: 999;
 }

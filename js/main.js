@@ -62,13 +62,12 @@ class Player extends Entity {
     shield(e) {
         this.health += e.damage
         setTimeout(() => {
-            this.health -= Math.floor(e.damage * this.shieldPercent)
-            this.update()
+            this.health -= Math.floor(e.damage * (1 - this.shieldPercent))
         }, 2001)
     }
 
     superAttack(e) {
-        if (this.attackCount = 3) {
+        if (this.attackCount == 3) {
             for (let i = 0; i < this.superAttackMultiplier; i++) {
                 this.attack(e)
             }
@@ -81,7 +80,7 @@ class Player extends Entity {
     }
 }
 
-let p1 = new Player(100, 20, 0.5, 40)
+let p1 = new Player(player.health, player.damage, player.shield, player.heal)
 let e1 = new Enemy(100 + (runda - 1) * 10, 30 + (runda - 1) * 5)
 
 let playerImg = document.getElementById("playerImg")
@@ -136,7 +135,7 @@ function enemyTurn() {
         e1 = new Enemy(100 + (runda - 1) * 10, 30 + (runda - 1) * 5)
         e1.update()
         counter.innerText = runda
-        alert(`Wave ${runda} completed!`)
+        alert(`Wave ${runda - 1} completed!`)
         return
     }
 
@@ -157,14 +156,24 @@ function enemyTurn() {
         if (p1.health <= 0) {
             buttonAbility(false)
             alert("YOU LOST")
+            setupShop()
+            lostGame()
+            getPlayers()
+            if (runda > player.score) {
+                player.score = runda - 1
+
+                database.collection("Korisnici").doc(player.docId).update({
+                    score: player.score
+                })
+            }
         }
     }, 4010)
 }
 
 attackButton.addEventListener("click", () => {
     p1.attack(e1)
-    p1.attackCount += 1
-    if (p1.attackCount <= 3) {
+    if (p1.attackCount < 3) {
+        p1.attackCount += 1
         superChargeIndicator.innerText = `Super charged: ${Math.round((p1.attackCount / 3) * 100)}%`
     }
     damagedEnemy()

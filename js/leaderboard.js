@@ -26,6 +26,8 @@ function processPlayers() {
 }
 
 function getPlayers() {
+    players = []
+    tablica.innerHTML = ``
     database.collection("Korisnici").get().then((querySnapshot => {
         querySnapshot.forEach(doc => {
             players.push({
