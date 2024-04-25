@@ -8,7 +8,7 @@ function postaviIgru() {
     <div class="container">
         <div class="row">
             <div class="col s4 m3 l3 grey" id="playerCard">
-                <h6 class="center col s12 indigo-text"><b>YOU</b></h6>
+                <h5 class="center indigo-text"><b>YOU</b></h5>
                 <progress value="0" max="100" id="playerHealth" class="col s12"></progress>
                 <i><b>
                     <p class="center" id="playerDmg">Damage: </p>
@@ -21,7 +21,7 @@ function postaviIgru() {
             </div>
 
             <div class="col s4 m3 l3 grey offset-m1 offset-s1 offset-l1" id="enemyCard">
-                <h6 class="center col s12 red-text" id="enemyName"><b>ENEMY</b></h6>
+                <h5 class="center red-text" id="enemyName"><b>ENEMY</b></h5>
                 <progress value="0" max="100" id="enemyHealth" class="col s12"></progress>
                 <i><b>
                     <p class="center" id="enemyDmg">Damage: </p>
@@ -155,6 +155,9 @@ function setupShop() {
             <p><b>Level:</b><br> 10 (MAX)</p>
             <p><b>Shield percent:</b><br>${player.shield * 100}% </p>`
     }
+    
+    //omogucava scrollanje
+    document.getElementById("body").removeAttribute("style")
 }
 
 function hideShop() {

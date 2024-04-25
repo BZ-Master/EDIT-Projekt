@@ -81,7 +81,7 @@ class Player extends Entity {
 }
 
 let p1 = new Player(player.health, player.damage, player.shield, player.heal)
-let e1 = new Enemy(100 + (runda - 1) * 10, 30 + (runda - 1) * 5)
+let e1 = new Enemy(100 + (runda - 1) * 10, 10 + (runda - 1) * 5)
 
 let playerImg = document.getElementById("playerImg")
 let enemyImg = document.getElementById("enemyImg")
@@ -132,7 +132,7 @@ function buttonAbility(bool) {
 function enemyTurn() {
     if (e1.health <= 0) {
         runda++
-        e1 = new Enemy(100 + (runda - 1) * 10, 30 + (runda - 1) * 5)
+        e1 = new Enemy(100 + (runda - 1) * 10, 10 + (runda - 1) * 5)
         e1.update()
         counter.innerText = runda
         alert(`Wave ${runda - 1} completed!`)
