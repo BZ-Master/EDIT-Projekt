@@ -4,7 +4,7 @@ function postaviIgru() {
     hideShop()
     let okvir = document.getElementById("game")
 
-    okvir.innerHTML = `        
+    okvir.innerHTML = `
     <div class="container">
         <div class="row">
             <div class="col s4 m3 l3 grey" id="playerCard">
@@ -48,9 +48,7 @@ function postaviIgru() {
         </div>
     </div>`
 
-    let script = document.createElement("script")
-    script.src = "js/main.js"
-    document.body.appendChild(script)
+    game()
 }
 
 function lostGame() {
@@ -69,38 +67,38 @@ function setupShop() {
 
     shop.innerHTML = `
     <h3 class="center">Upgrades</h3>
-    <div class="row">
-        <div id="coinCounter" class="card col s4 m2 l2 center">
-            <p><i class="material-icons">attach_money</i>${player.coins}</p>
-        </div>
-    </div>
     
     <div class="row">
         <div class="col s12 m6 l6 offset-m3 offset-l3">
             <div class="card">
                 <div class="card-content center">
                     <h6 class="center"><b>HEALTH</b></h6>
-                        <p><b>Description:</b><br>Količina healtha koju igrač ima na početku runde i koju ne može prijeći.</p>
-                        <p><b>Amount:</b><br>${player.health}</p>
-                        <p><b>Cost:</b><br>${(player.health) * 10}</p>
+                    <p><b>Description:</b><br>Količina healtha koju igrač ima na početku runde i koju ne može prijeći.</p>
+                    <p><b>Level:</b><br>${Math.floor(player.health / 50)}
+                    <p><b>Amount:</b><br>${player.health}</p>
+                    <p><b>Cost:</b><br>${(player.health) * 5}</p>
                 </div>
-                <a class="waves-effect waves-light btn col s12"><i class="material-icons left">arrow_upward</i>upgrade</a>
+                <a class="waves-effect waves-light btn col s12 green" onclick=upgradeHealth()><i class="material-icons left">arrow_upward</i>upgrade</a>
             </div>
         </div>
     </div>
 
+    <br>
     <hr>
+
+    <h4 class="center">Abilities</h4>
 
     <div class="row">
         <div class="col s12 m6 l6 offset-m3 offset-l3">
             <div class="card">
                 <div class="card-content center">
                     <h6 class="center"><b>ATTACK</b></h6>
-                        <p><b>Description:</b><br>Napadni neprijatelja.</p>
-                        <p><b>Damage:</b><br>${player.damage}</p>
-                        <p><b>Cost:</b><br>${(player.damage) * 10}</p>
+                    <p><b>Description:</b><br>Napadni neprijatelja.</p>
+                    <p><b>Level:</b><br>${Math.floor(player.damage/10)}</p>
+                    <p><b>Damage:</b><br>${player.damage}</p>
+                    <p><b>Cost:</b><br>${(player.damage) * 10}</p>
                 </div>
-                <a class="waves-effect waves-light btn col s12"><i class="material-icons left">arrow_upward</i>upgrade</a>
+                <a class="waves-effect waves-light btn col s12 green" onclick=upgradeAttack()><i class="material-icons left" >arrow_upward</i>upgrade</a>
             </div>
         </div>
 
@@ -108,12 +106,12 @@ function setupShop() {
             <div class="card">
                 <div class="card-content center" id="shieldCard">
                     <h6 class="center"><b>SHIELD</b></h6>
-                        <p><b>Description:</b><br>Štiti od neprijateljske štete tijekom jedne runde.</p>
-                        <p><b>Level:</b><br>${player.shield * 10} (max 10)</p>
-                        <p><b>Shield percent:</b><br>${player.shield * 100}%</p>
-                        <p><b>Cost:</b><br>${(player.shield) * 10000}</p>
+                    <p><b>Description:</b><br>Štiti od neprijateljske štete tijekom jedne runde.</p>
+                    <p><b>Level:</b><br>${Math.floor(player.shield * 10)} (max 10)</p>
+                    <p><b>Shield percent:</b><br>${Math.floor(player.shield * 100)}%</p>
+                    <p><b>Cost:</b><br>${Math.floor((player.shield) * 10000)}</p>
                 </div>
-                <a class="waves-effect waves-light btn col s12" id="shieldUpgradeButton"><i class="material-icons left" >arrow_upward</i>upgrade</a>
+                <a class="waves-effect waves-light btn col s12 green" id="shieldUpgradeButton" onclick=upgradeShield()><i class="material-icons left" >arrow_upward</i>upgrade</a>
             </div>
         </div>
 
@@ -121,12 +119,12 @@ function setupShop() {
             <div class="card">
                 <div class="card-content center">
                     <h6 class="center"><b>HEAL</b></h6>
-                        <p><b>Description:</b><br>Povećaj si health.</p>
-                        <p><b>Level:</b><br>${player.heal / 10}</p>
-                        <p><b>Heal:</b><br>${player.heal}</p>
-                        <p><b>Cost:</b><br> ${(player.heal) * 10}</p>
+                    <p><b>Description:</b><br>Povećaj si health.</p>
+                    <p><b>Level:</b><br>${Math.floor(player.heal / 10)}</p>
+                    <p><b>Heal:</b><br>${player.heal}</p>
+                    <p><b>Cost:</b><br> ${(player.heal) * 10}</p>
                 </div>
-                <a class="waves-effect waves-light btn col s12"><i class="material-icons left">arrow_upward</i>upgrade</a>
+                <a class="waves-effect waves-light btn col s12 green" onclick=upgradeHeal()><i class="material-icons left">arrow_upward</i>upgrade</a>
             </div>
         </div>
 
@@ -134,12 +132,12 @@ function setupShop() {
             <div class="card">
                 <div class="card-content center">
                     <h6 class="center"><b>SUPER ATTACK</b></h6>
-                        <p><b>Description:</b><br>Napravi višestruko veći damage odjednom. Puni se nakon 3 napada. </p>
-                        <p><b>Level:</b><br>${player.super}</p>
-                        <p><b>Attack multiplier:</b><br>${player.super}</p>
-                        <p><b>Cost:</b><br>${player.super * 100}</p>
+                    <p><b>Description:</b><br>Napravi višestruko veći damage odjednom. Puni se nakon 3 napada. </p>
+                    <p><b>Level:</b><br>${player.super - 1}</p>
+                    <p><b>Attack multiplier:</b><br>${player.super}</p>
+                    <p><b>Cost:</b><br>${player.super * 200}</p>
                 </div>
-                <a class="waves-effect waves-light btn col s12"><i class="material-icons left">arrow_upward</i>upgrade</a>
+                <a class="waves-effect waves-light btn col s12 green" onclick=upgradeSuper()><i class="material-icons left">arrow_upward</i>upgrade</a>
             </div>
         </div>
     </div>`
@@ -163,7 +161,16 @@ function setupShop() {
 function hideShop() {
     let shop = document.getElementById("upgrades")
     shop.innerHTML = `
-    <h5>Igra je pokrenuta!</h5>
-    <p>Ne možete unaprijediti moći dok je aktivna igra!</p>
+    <h5 class="center">Igra je pokrenuta!</h5>
+    <p class="center">Ne možete unaprijediti moći dok je aktivna igra!</p>
     `
+}
+
+function quitGame() {
+    let potvdra = confirm("Želite li prekinuti trenutnu igru?\nVaš rezultat se neće zabilježiti!")
+
+    if (potvdra) {
+        lostGame()
+        setupShop()
+    }
 }

@@ -31,8 +31,8 @@
     <ul class="sidenav" id="slide-out">
         <h5 class="center"><b>Dungeon</b></h5>
         <li><a href="#instructions">Instructions</a></li>
-        <li><a href="#upgrades">Upgrades</a></li>
         <li><a href="#game">Battle</a></li>
+        <li><a href="#upgrades">Upgrades</a></li>
         <li><a href="#leaderboard">Leaderboard</a></li>
     </ul>
 
@@ -50,10 +50,23 @@
                 <br><br>
             </div>
         </div>
-        <div class="parallax"><img src="media/dungeon.png" id="background"></div>
+        <div class="parallax"><img src="media/fantasy.jpg" id="background"></div>
+    </div>
+
+    <div class="row" id="coinCounterFrame">
+    </div>
+
+    <div class="fixed-action-btn" id="logOutButton">
+    </div>
+
+    <div class="fixed-action-btn" id="logInButton">
+        <a class="btn-floating btn-large red" href="#game">
+            <i class="large material-icons">person</i>
+        </a>
     </div>
 
     <div class="container" id="instructions">
+        <h4 class="center">Kako igrati?</h4>
         <ul class="collapsible">
             <li>
                 <div class="collapsible-header"><i class="material-icons">book</i>How to play</div>
@@ -74,11 +87,6 @@
         </ul>
     </div>
 
-    <div class="container" id="upgrades">
-        <h5 class="center">Unaprijedite svoje moći!</h5>
-        <p class="center">Ako ne vidite svoje moći potrebna je <a href="#game">prijava</a>!</p>
-    </div>
-
     <br>
 
     <div class="container" id="game">
@@ -87,45 +95,52 @@
         <div class="row center">
             <a class="waves-effect waves-light btn modal-trigger grey darken-2" href="#prijava">Prijava</a>
         </div>
+    </div>
 
-        <div id="prijava" class="modal">
-            <div class="container">
-                <h5 class="center">PRIJAVA</h5>
-                <p class="center">Unesite korisničko ime i lozinku. Ako želite kreirati novi račun prvo kliknite
-                    REGISTER, a onda LOGIN!
-                <p>
-                <div class="row">
-                    <div class="col s12 m10 l8 offset-m1 offset-l2">
-                        <form>
-                            <div class="row">
-                                <div class="input-field col s12">
-                                    <input placeholder="Username" id="username" type="text"
-                                        class="validate center-align">
-                                </div>
+    <div id="prijava" class="modal">
+        <div class="container">
+            <h5 class="center">PRIJAVA</h5>
+            <p class="center">Unesite korisničko ime i lozinku. Ako želite kreirati novi račun prvo kliknite
+                REGISTER, a onda LOGIN!
+            <p>
+            <div class="row">
+                <div class="col s12 m10 l8 offset-m1 offset-l2">
+                    <form>
+                        <div class="row">
+                            <div class="input-field col s12">
+                                <input placeholder="Username" id="username" type="text" class="validate center-align">
                             </div>
+                        </div>
 
-                            <div class="row">
-                                <div class="input-field col s12">
-                                    <input placeholder="Password" id="password" type="password"
-                                        class="validate center-align">
-                                </div>
+                        <div class="row">
+                            <div class="input-field col s12">
+                                <input placeholder="Password" id="password" type="password"
+                                    class="validate center-align">
                             </div>
-                        </form>
-                        <div class="row">
-                            <button
-                                class="btn waves-effect waves-light grey darken-2 col s6 m4 l4 offset-m4 offset-l4 offset-s3"
-                                id="login">Login</button>
                         </div>
-                        <div class="row">
-                            <button
-                                class="btn waves-effect waves-light grey darken-2 col s6 m4 l4 offset-m4 offset-l4 offset-s3"
-                                id="register">Register</button>
-                        </div>
+                    </form>
+                    <div class="row">
+                        <button
+                            class="btn waves-effect waves-light grey darken-2 col s6 m4 l4 offset-m4 offset-l4 offset-s3"
+                            id="login">Login</button>
+                    </div>
+                    <div class="row">
+                        <button
+                            class="btn waves-effect waves-light grey darken-2 col s6 m4 l4 offset-m4 offset-l4 offset-s3"
+                            id="register">Register</button>
                     </div>
                 </div>
             </div>
         </div>
     </div>
+
+    <br>
+
+    <div class="container" id="upgrades">
+        <h5 class="center">Unaprijedite svoje moći!</h5>
+        <p class="center">Ako ne vidite svoje moći potrebna je <a href="#game">prijava</a>!</p>
+    </div>
+
 
     <br>
 
@@ -151,16 +166,18 @@
             <div class="row">
                 <div class="col l6 s12">
                     <h5 class="white-text">Dungeon</h5>
-                    <p class="grey-text text-lighten-4">Igru je izradio Bartul Zavorović kao projekt za Edit Napredni
+                    <p class="grey-text text-lighten-4">Igru je izradio Bartul Zavorović kao projekt za Edit
+                        Napredni
                         tečaj.
                     </p>
                 </div>
                 <div class="col l4 offset-l2 s12">
                     <h5 class="white-text">Linkovi</h5>
                     <ul>
-                        <li><a class="grey-text text-lighten-3" href="https://github.com/BZ-Master">GitHub</a></li>
-                        <li><a class="grey-text text-lighten-3"
-                                href="https://www.youtube.com/@digitalnadalmacija/featured">YouTube</a></li>
+                        <li><a class="grey-text text-lighten-3" href="https://github.com/BZ-Master/EDIT-Projekt">GitHub</a></li>
+                        <li><a class="grey-text text-lighten-3" href="https://www.youtube.com/@digitalnadalmacija/featured">YouTube</a></li>
+                        <li><a class="grey-text text-lighten-3" href="https://www.instagram.com/digitalnadalmacija/">Instagram</a></li>
+                        <li><a class="grey-text text-lighten-3" href="https://www.facebook.com/ictzupanija/">Facebook</a></li>
                     </ul>
                 </div>
             </div>
@@ -176,6 +193,8 @@
     <script src='js/setup.js'></script>
     <script src="js/login.js"></script>
     <script src="js/leaderboard.js"></script>
+    <script src="js/main.js"></script>
+    <script src="js/upgrade.js"></script>
 </body>
 
 </html>

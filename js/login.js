@@ -24,6 +24,34 @@ let player = {
     docId: ""
 }
 
+function logOut() {
+    let potvdra = confirm(`Želite li se odjaviti s računa ${player.name}?`)
+
+    if (potvdra) {
+        document.getElementById("game").innerHTML = `
+            <h5 class="center">Kako bi igrali igru potrebna je prijava</h5>
+            <br>
+            <div class="row center">
+                <a class="waves-effect waves-light btn modal-trigger grey darken-2" href="#prijava">Prijava</a>
+            </div>
+        `
+
+        document.getElementById("upgrades").innerHTML = `
+            <h5 class="center">Unaprijedite svoje moći!</h5>
+            <p class="center">Ako ne vidite svoje moći potrebna je <a href="#game">prijava</a>!</p>
+        `
+
+        document.getElementById("logOutButton").innerHTML = ``
+        document.getElementById("coinCounterFrame").innerHTML = ``
+
+        document.getElementById("logInButton").innerHTML = `
+            <a class="btn-floating btn-large red" href="#game">
+                <i class="large material-icons">person</i>
+            </a
+        `
+    }
+}
+
 let okvir = document.getElementById("game")
 
 document.getElementById("login").addEventListener("click", () => {
@@ -35,14 +63,15 @@ document.getElementById("login").addEventListener("click", () => {
     database.collection("Korisnici").where("username", "==", name).where("password", "==", pass).get().then((querySnapshot) => {
         querySnapshot.forEach((doc) => {
             prijava = true
-            player.health = doc.data().healthLevel * 100
+            player.health = doc.data().healthLevel * 50
             player.coins = doc.data().coins
             player.damage = doc.data().damageLevel * 10
             player.shield = doc.data().shieldLevel * 0.1
             player.heal = doc.data().healLevel * 10
-            player.super = doc.data().superLevel
+            player.super = doc.data().superLevel + 1
             player.score = doc.data().score
             player.docId = doc.id
+            player.name = doc.data().username
         })
 
         if (prijava) {
@@ -53,6 +82,27 @@ document.getElementById("login").addEventListener("click", () => {
                     <a class="waves-effect waves-light btn grey darken-2" onclick=postaviIgru()>Pokreni igru</a>
                 </div>
                 <p class="center red-text">Unaprijedite moći prije igre jer tijekom nje nećete moći to učiniti!</p>`
+
+            document.getElementById("coinCounterFrame").innerHTML = `
+                <div id="coinCounter" class="card col s4 m2 l2 center">
+                <p><i class="material-icons">attach_money</i>${player.coins}</p>
+                </div>`
+
+            document.getElementById("logOutButton").innerHTML = `
+                <a class="btn-floating btn-large red" onclick=logOut()>
+                    <i class="large material-icons">exit_to_app</i>
+                </a>
+            `
+
+            document.getElementById("logInButton").innerHTML = ``
+
+            setTimeout(() => {
+                let modal = document.getElementById('prijava')
+                let instance = M.Modal.getInstance(modal)
+                instance.close()
+            }, 100)
+
+            updateCoins()
             setupShop()
         }
 
@@ -65,6 +115,11 @@ document.getElementById("login").addEventListener("click", () => {
 document.getElementById("register").addEventListener("click", () => {
     let name = document.getElementById("username").value
     let pass = document.getElementById("password").value
+
+    if (name.trim() == "" || pass.trim() == "") {
+        alert("Username i/ili password ne mogu biti prazni!")
+        return
+    }
 
     let korisnici = database.collection("Korisnici")
 
@@ -86,7 +141,8 @@ document.getElementById("register").addEventListener("click", () => {
                 damageLevel: 1,
                 shieldLevel: 1,
                 healLevel: 1,
-                superLevel: 1
+                superLevel: 1,
+                healthLevel: 1
             })
 
             alert(`Uspješna registracija! Dobro došli ${name}!`)
