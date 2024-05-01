@@ -43,7 +43,7 @@ function postaviIgru() {
                 </div>
 
                 <div class="col s5 offset-s2">
-                    <img src="media/player.jpg" class="responsive-img" style="transform: scaleX(-1);" id="enemyImg">
+                    <img src="media/enemy.jpg" class="responsive-img" id="enemyImg">
                 </div>
             </div>
         </div>

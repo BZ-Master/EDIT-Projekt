@@ -134,6 +134,52 @@ nav {
     width: 100%;
 }
 
-.healed{
-    filter: hue-rotate(+60deg)
+.healed {
+    filter: hue-rotate(+70deg)
+}
+
+#prijava .input-field label {
+    color: #616161;
+}
+
+#prijava .input-field input[type=text]:focus+label {
+    color: #616161;
+}
+
+#prijava .input-field input[type=text]:focus {
+    border-bottom: 1px solid #616161;
+    box-shadow: 0 1px 0 0 #616161;
+}
+
+#prijava .input-field input[type=text].valid {
+    border-bottom: 1px solid #616161;
+    box-shadow: 0 1px 0 0 #616161;
+}
+
+#prijava .input-field input[type=text].invalid {
+    border-bottom: 1px solid #616161;
+    box-shadow: 0 1px 0 0 #616161;
+}
+
+#prijava .input-field .prefix.active {
+    color: #616161;
+}
+
+#prijava .input-field input[type=password]:focus+label {
+    color: #616161;
+}
+
+#prijava .input-field input[type=password]:focus {
+    border-bottom: 1px solid #616161;
+    box-shadow: 0 1px 0 0 #616161;
+}
+
+#prijava .input-field input[type=password].valid {
+    border-bottom: 1px solid #616161;
+    box-shadow: 0 1px 0 0 #616161;
+}
+
+#prijava .input-field input[type=password].invalid {
+    border-bottom: 1px solid #616161;
+    box-shadow: 0 1px 0 0 #616161;
 }

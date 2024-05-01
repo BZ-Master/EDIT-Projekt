@@ -268,7 +268,7 @@ function game() {
 
     let shieldCooldown = 0
     shieldButton.addEventListener("click", () => {
-        if (healCooldown != 0) {
+        if (shieldCooldown != 0) {
             alert(`Heal is on cooldown for ${shieldCooldown} round(s)!`)
             return
         }
