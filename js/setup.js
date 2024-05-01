@@ -5,6 +5,7 @@ function postaviIgru() {
     let okvir = document.getElementById("game")
 
     okvir.innerHTML = `
+    <a class="waves-effect waves-light btn grey darken-2" onclick = quitGame()><i class="material-icons left">close</i>Završi igru</a>
     <div class="container">
         <div class="row">
             <div class="col s4 m3 l3 grey" id="playerCard">

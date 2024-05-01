@@ -8,21 +8,26 @@ function game() {
     let superChargeIndicator = document.getElementById("indicator")
 
     class Entity {
-        constructor(health, damage) {
+        constructor(health, damage, heal) {
             this.health = health
             this.damage = damage
             this.maxHealth = health
+            this.healIncrease = heal
         }
 
         attack(p2) {
             p2.health -= this.damage
             p2.update()
         }
+
+        heal() {
+            this.health += this.healIncrease
+        }
     }
 
     class Enemy extends Entity {
-        constructor(health, damage) {
-            super(health, damage)
+        constructor(health, damage, heal) {
+            super(health, damage, heal)
             this.update()
 
             let enemyDmg = document.getElementById("enemyDmg")
@@ -38,9 +43,8 @@ function game() {
 
     class Player extends Entity {
         constructor(health, damage, shield, heal) {
-            super(health, damage)
+            super(health, damage, heal)
             this.shieldPercent = shield
-            this.healIncrease = heal
             this.superAttackMultiplier = 3
             this.attackCount = 0
             this.update()
@@ -53,11 +57,6 @@ function game() {
             let healthBar = document.getElementById("playerHealth")
             healthBar.value = this.health
             healthBar.max = this.maxHealth
-        }
-
-        heal() {
-            this.health += this.healIncrease
-            this.update()
         }
 
         shield(e) {
@@ -82,7 +81,7 @@ function game() {
     }
 
     let p1 = new Player(player.health, player.damage, player.shield, player.heal)
-    let e1 = new Enemy(100 + (runda - 1) * 10, 10 + (runda - 1) * 5)
+    let e1 = new Enemy(50 + (runda - 1) * 10, 10 + (runda - 1) * 5, 10 + (runda - 1) * 10)
 
     let playerImg = document.getElementById("playerImg")
     let enemyImg = document.getElementById("enemyImg")
@@ -98,6 +97,20 @@ function game() {
         playerImg.classList.add("damaged")
         setTimeout(() => {
             playerImg.classList.remove("damaged")
+        }, 1000)
+    }
+
+    function healedEnemy() {
+        enemyImg.classList.add("healed")
+        setTimeout(() => {
+            enemyImg.classList.remove("healed")
+        }, 1000)
+    }
+
+    function healedPlayer() {
+        playerImg.classList.add("healed")
+        setTimeout(() => {
+            playerImg.classList.remove("healed")
         }, 1000)
     }
 
@@ -134,7 +147,7 @@ function game() {
         if (e1.health <= 0) {
             let coins = 10
             let bonusCoins = Math.floor(runda / 10) * 10
-            
+
             player.coins += coins + bonusCoins
 
             database.collection("Korisnici").doc(player.docId).update({
@@ -144,24 +157,40 @@ function game() {
             updateCoins()
 
             runda++
-            e1 = new Enemy(100 + (runda - 1) * 10, 10 + (runda - 1) * 5)
+            e1 = new Enemy(50 + (runda - 1) * 10, 10 + (runda - 1) * 5, 10 + (runda - 1) * 10)
             e1.update()
             counter.innerText = runda
-            alert(`Wave ${runda - 1} completed!\n+${coins+bonusCoins} coins`)
+            alert(`Wave ${runda - 1} completed!\n+${coins + bonusCoins} coins`)
             return
         }
 
         else if (e1.health > 0 && p1.health > 0) {
             buttonAbility(false)
 
-            setTimeout(() => {
-                damagedPlayer()
-            }, 3000)
+            let move = Math.floor(Math.random() * 2)
 
-            setTimeout(() => {
-                e1.attack(p1)
-                buttonAbility(true)
-            }, 4000)
+            if (move) {
+                setTimeout(() => {
+                    damagedPlayer()
+                }, 3000)
+
+                setTimeout(() => {
+                    e1.attack(p1)
+                    buttonAbility(true)
+                }, 4000)
+            }
+
+            else {
+                setTimeout(() => {
+                    healedEnemy()
+                }, 3000)
+
+                setTimeout(() => {
+                    e1.heal()
+                    e1.update()
+                    buttonAbility(true)
+                }, 4000)
+            }
         }
 
         setTimeout(() => {
@@ -194,6 +223,8 @@ function game() {
 
     healButton.addEventListener("click", () => {
         p1.heal()
+        p1.update()
+        healedPlayer()
         enemyTurn()
     })
 
