@@ -1,18 +1,19 @@
 M.AutoInit()
 
+const firebaseConfig = {
+    apiKey: "AIzaSyDLdeyT4BrVdZG4jfxFAGJGirHnIULM5do",
+    authDomain: "edit-projekt-bf73d.firebaseapp.com",
+    projectId: "edit-projekt-bf73d",
+    storageBucket: "edit-projekt-bf73d.appspot.com",
+    messagingSenderId: "45463981132",
+    appId: "1:45463981132:web:bb4e9e26488803c68ff8e9"
+}
+
+const app = firebase.initializeApp(firebaseConfig);
+let database = app.firestore()
+
 let players = []
 let tablica = document.getElementById("ljestvica")
-
-function showTopPlayers() {
-    for (let i = 0; i < 10; i++) {
-        tablica.innerHTML += `
-        <tr>
-            <td>${i + 1}</td>
-            <td>${players[i].username}</td>
-            <td>${players[i].score}</td>
-        </tr>`
-    }
-}
 
 function processPlayers() {
     let t
@@ -25,7 +26,15 @@ function processPlayers() {
             }
         }
     }
-    showTopPlayers()
+    
+    players.forEach(el => {
+        tablica.innerHTML += `
+        <tr>
+            <td>${players.indexOf(el) + 1}</td>
+            <td>${el.username}</td>
+            <td>${el.score}</td>
+        </tr>`
+    })
 }
 
 function getPlayers() {

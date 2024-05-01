@@ -42,10 +42,10 @@ function game() {
     }
 
     class Player extends Entity {
-        constructor(health, damage, shield, heal) {
+        constructor(health, damage, shield, heal, superX) {
             super(health, damage, heal)
-            this.shieldPercent = shield
-            this.superAttackMultiplier = 3
+            this.shieldPercent = shield / 10
+            this.superAttackMultiplier = superX
             this.attackCount = 0
             this.update()
 
@@ -80,8 +80,8 @@ function game() {
         }
     }
 
-    let p1 = new Player(player.health, player.damage, player.shield, player.heal)
-    let e1 = new Enemy(50 + (runda - 1) * 10, 10 + (runda - 1) * 5, 10 + (runda - 1) * 10)
+    let p1 = new Player(player.health, player.damage, player.shield, player.heal, player.super)
+    let e1 = new Enemy(50 + (runda - 1) * 10, 10 + (runda - 1) * 10, 10 + (runda - 1) * 5)
 
     let playerImg = document.getElementById("playerImg")
     let enemyImg = document.getElementById("enemyImg")
@@ -145,8 +145,12 @@ function game() {
 
     function enemyTurn() {
         if (e1.health <= 0) {
-            let coins = 10
-            let bonusCoins = Math.floor(runda / 10) * 10
+            let coins = 50
+            let bonusCoins = Math.floor(runda / 10) * 25
+
+            if (runda % 5 == 0) {
+                bonusCoins += (runda / 5) * 100
+            }
 
             player.coins += coins + bonusCoins
 
@@ -157,7 +161,19 @@ function game() {
             updateCoins()
 
             runda++
-            e1 = new Enemy(50 + (runda - 1) * 10, 10 + (runda - 1) * 5, 10 + (runda - 1) * 10)
+
+            let enemyName = document.getElementById("enemyName")
+
+            if (runda % 5 == 0) {
+                e1 = new Enemy((50 + (runda - 1) * 10) * 2, (10 + (runda - 1) * 10) * 2, (10 + (runda - 1) * 5) * 2)
+                enemyName.innerHTML = `<b>BOSS</b>`
+            }
+
+            else {
+                e1 = new Enemy(50 + (runda - 1) * 10, 10 + (runda - 1) * 10, 10 + (runda - 1) * 5)
+                enemyName.innerHTML = `<b>ENEMY</b>`
+            }
+
             e1.update()
             counter.innerText = runda
             alert(`Wave ${runda - 1} completed!\n+${coins + bonusCoins} coins`)
@@ -167,7 +183,11 @@ function game() {
         else if (e1.health > 0 && p1.health > 0) {
             buttonAbility(false)
 
-            let move = Math.floor(Math.random() * 2)
+            let move = 1
+
+            if (e1.health + e1.healIncrease <= e1.maxHealth) {
+                move = Math.floor(Math.random() * 2)
+            }
 
             if (move) {
                 setTimeout(() => {
@@ -196,7 +216,7 @@ function game() {
         setTimeout(() => {
             if (p1.health <= 0) {
                 buttonAbility(false)
-                alert("YOU LOST")
+                alert(`Game Over\nScore: ${runda - 1}`)
                 setupShop()
                 lostGame()
                 if (runda > player.score) {
@@ -209,6 +229,12 @@ function game() {
                 getPlayers()
             }
         }, 4010)
+
+        if (healCooldown > 0)
+            healCooldown -= 1
+
+        if (shieldCooldown > 0)
+            shieldCooldown -= 1
     }
 
     attackButton.addEventListener("click", () => {
@@ -220,16 +246,35 @@ function game() {
         damagedEnemy()
         enemyTurn()
     })
-
+    
+    let healCooldown = 0
     healButton.addEventListener("click", () => {
+        if (p1.health + p1.healIncrease > p1.maxHealth) {
+            alert("Ne možete koristiti heal!")
+            return
+        }
+
+        if (healCooldown != 0) {
+            alert(`Heal is on cooldown for ${healCooldown} round(s)!`)
+            return
+        }
+
         p1.heal()
+        healCooldown = 3
         p1.update()
         healedPlayer()
         enemyTurn()
     })
 
+    let shieldCooldown = 0
     shieldButton.addEventListener("click", () => {
+        if (healCooldown != 0) {
+            alert(`Heal is on cooldown for ${shieldCooldown} round(s)!`)
+            return
+        }
+
         p1.shield(e1)
+        shieldCooldown = 2
         enemyTurn()
     })
 

@@ -17,7 +17,7 @@ let player = {
     health: 100,
     coins: 0,
     damage: 10,
-    shield: 0.1,
+    shield: 1,
     heal: 10,
     super: 2,
     score: 0,
@@ -66,7 +66,7 @@ document.getElementById("login").addEventListener("click", () => {
             player.health = doc.data().healthLevel * 50
             player.coins = doc.data().coins
             player.damage = doc.data().damageLevel * 10
-            player.shield = doc.data().shieldLevel * 0.1
+            player.shield = doc.data().shieldLevel
             player.heal = doc.data().healLevel * 10
             player.super = doc.data().superLevel + 1
             player.score = doc.data().score

@@ -4,7 +4,7 @@
 <head>
     <meta charset='utf-8'>
     <meta http-equiv='X-UA-Compatible' content='IE=edge'>
-    <title>Projekt</title>
+    <title>Dungeon</title>
     <meta name='viewport' content='width=device-width, initial-scale=1'>
     <link rel='stylesheet' type='text/css' media='screen' href='main.css'>
 
@@ -19,11 +19,11 @@
 </head>
 
 <body id="body">
-    <nav>
+    <nav id="navbar">
         <div class="nav-wrapper grey darken-4">
             <a href="#" data-target="slide-out" class="sidenav-trigger show-on-medium-and-up"><i
                     class="material-icons">menu</i></a>
-            <a href="#" class="brand-logo center">Dungeon</a>
+            <a href="#" class="brand-logo center hide-on-small-only">Dungeon</a>
         </div>
     </nav>
 
@@ -31,10 +31,12 @@
     <ul class="sidenav" id="slide-out">
         <h5 class="center"><b>Dungeon</b></h5>
         <li><a href="#instructions">Instructions</a></li>
-        <li><a href="#battle">Battle</a></li>
+        <li><a href="#game">Battle</a></li>
         <li><a href="#upgrades">Upgrades</a></li>
         <li><a href="#leaderboard">Leaderboard</a></li>
     </ul>
+
+    <br><br>
 
     <div id="index-banner" class="parallax-container">
         <div class="section no-pad-bot">
@@ -45,7 +47,7 @@
                     Ostvarite
                     što bolji rezultat da bi se plasirali na ljestvicu najboljih igrača.</h5>
                 <div class="row center">
-                    <a class="waves-effect waves-light btn grey darken-2" href="#battle">Igraj</a>
+                    <a class="waves-effect waves-light btn grey darken-2" href="#game">Igraj</a>
                 </div>
                 <br><br>
             </div>
@@ -70,10 +72,34 @@
         <ul class="collapsible">
             <li>
                 <div class="collapsible-header"><i class="material-icons">book</i>How to play</div>
-                <div class="collapsible-body"><span>Dobro došli u <i>Dungeon</i>, igru u kojoj se borite protiv beskonačnih valova neprijatelja kako bi ostvarili što veći rezultat i plasirali se na vrh ljestvice.<br>Kako bi igrali igru potrebna je prijava.<br>Nakon prijave u okviru <i>Upgrades</i> pojavit će Vam se mogućnost unaprijeđenja specijalnih moći i health bodova. Obavite svaki upgrade prije nego što kliknete Pokreni igru jer tijekom igre ne možete upgradeati ability.</span></div>
+                <div class="collapsible-body"><span>Dobro došli u <i>Dungeon</i>, igru u kojoj se borite protiv
+                        beskonačnih valova neprijatelja kako bi ostvarili što veći rezultat i plasirali se na vrh
+                        ljestvice.<br>Kako bi igrali igru potrebna je prijava.<br>Nakon prijave u okviru <i>Upgrades</i>
+                        pojavit će Vam se mogućnost unaprijeđenja specijalnih moći i health bodova. Obavite sva
+                        unaprijeđenja prije nego što kliknete <i>Pokreni igru</i> jer tijekom igre ne možete to
+                        činiti.<br>Kada pokrenete igru stvorit će se prvi neprijatelj kojeg morate pobijediti kako bi
+                        ostvarili +1 score. Kada ga pobijedite stvara se još jedan, ali ovog puta jači, neprijatelj.
+                        Svaku petu rundu dočekat će Vas Boss koji će biti dvostruko jači od običnog neprijatelja koji se
+                        stvara u toj rundi.<br>Za svakog pobijeđenog neprijatelja dobivate novčiće koje možete potrošiti
+                        na unaprijeđenja svoga <i>healtha</i> i abilityja. Broj novčića za svakog pobijeđenog
+                        neprijetelja se uvećava svakih 10 rundi. Pobijeđeni Boss također daje više novčića.</span></div>
             </li>
-            <li id="battle">
+            <li>
                 <div class="collapsible-header"><i class="material-icons">whatshot</i>Abilities</div>
+                <div class="collapsible-body"><span>
+                        Postoje 4 abilityja: attack, heal, shield i super attack. Možete aktivirati samo jedan po svojoj rundi!<br><br>
+                        Attack se aktivira na gumb: <button class="btn waves-effect waves-light grey darken-2">A</button><br>
+                        Neprijatelju zadajete damage ovisno o Vašem Attack Levelu. Damage koji dajete je prikazan ispod Vašeg health bara!<br><br>
+                        Shield se aktivira na gumb: <button class="btn waves-effect waves-light grey darken-2">S</button><br>
+                        Idući nepijateljev napad zaštit ćete se za postotak štete koji ovisi o Vašem Shield Levelu. Nakon što ga aktivirate ne možete ga koristiti 1 rundu!<br><br>
+                        Heal se aktivira na gumb: <button class="btn waves-effect waves-light grey darken-2">H</button><br>
+                        Vaš health se uvećava za vrijednost koja ovisi o Vašem Heal Levelu. Kada aktivirate ovaj ability ne možete ga koristiti 2 runde. Također ga ne možete aktivirati ako će vrijednost healtha preći vrijednost vezanu za Vaš Health Level!<br><br>
+                        Super Attack se aktivira na gumb: <button class="btn waves-effect waves-light grey darken-2">SA</button><br>
+                        Super attack možete aktivirati nakon što napravite 3 napada.
+                    </span></div>
+            </li>
+            <li>
+                <div class="collapsible-header"><i class="material-icons">attach_money</i>Upgrades</div>
                 <div class="collapsible-body"><span>Lorem ipsum dolor sit amet consectetur adipisicing elit. Sit
                         accusantium
                         ducimus perferendis deserunt unde vitae esse, sint earum debitis aut laboriosam? Quo numquam
@@ -153,6 +179,10 @@
             <tbody id="ljestvica">
             </tbody>
         </table>
+        <div class="row center">
+            <a href="leaderboard.html">Cijeli poredak pogledajte ovdje...</a>
+        </div>
+
     </div>
 
     <br>
@@ -170,10 +200,14 @@
                 <div class="col l4 offset-l2 s12">
                     <h5 class="white-text">Linkovi</h5>
                     <ul>
-                        <li><a class="grey-text text-lighten-3" href="https://github.com/BZ-Master/EDIT-Projekt">GitHub</a></li>
-                        <li><a class="grey-text text-lighten-3" href="https://www.youtube.com/@digitalnadalmacija/featured">YouTube</a></li>
-                        <li><a class="grey-text text-lighten-3" href="https://www.instagram.com/digitalnadalmacija/">Instagram</a></li>
-                        <li><a class="grey-text text-lighten-3" href="https://www.facebook.com/ictzupanija/">Facebook</a></li>
+                        <li><a class="grey-text text-lighten-3"
+                                href="https://github.com/BZ-Master/EDIT-Projekt">GitHub</a></li>
+                        <li><a class="grey-text text-lighten-3"
+                                href="https://www.youtube.com/@digitalnadalmacija/featured">YouTube</a></li>
+                        <li><a class="grey-text text-lighten-3"
+                                href="https://www.instagram.com/digitalnadalmacija/">Instagram</a></li>
+                        <li><a class="grey-text text-lighten-3"
+                                href="https://www.facebook.com/ictzupanija/">Facebook</a></li>
                     </ul>
                 </div>
             </div>

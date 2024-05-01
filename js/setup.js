@@ -108,9 +108,9 @@ function setupShop() {
                 <div class="card-content center" id="shieldCard">
                     <h6 class="center"><b>SHIELD</b></h6>
                     <p><b>Description:</b><br>Štiti od neprijateljske štete tijekom jedne runde.</p>
-                    <p><b>Level:</b><br>${Math.floor(player.shield * 10)} (max 10)</p>
-                    <p><b>Shield percent:</b><br>${Math.floor(player.shield * 100)}%</p>
-                    <p><b>Cost:</b><br>${Math.floor((player.shield) * 10000)}</p>
+                    <p><b>Level:</b><br>${player.shield} (max 10)</p>
+                    <p><b>Shield percent:</b><br>${player.shield * 10}%</p>
+                    <p><b>Cost:</b><br>${Math.floor(player.shield * 1000)}</p>
                 </div>
                 <a class="waves-effect waves-light btn col s12 green" id="shieldUpgradeButton" onclick=upgradeShield()><i class="material-icons left" >arrow_upward</i>upgrade</a>
             </div>
@@ -143,7 +143,7 @@ function setupShop() {
         </div>
     </div>`
 
-    if (player.shield == 1) {
+    if (player.shield == 10) {
         let botun = document.getElementById("shieldUpgradeButton")
         botun.classList.add("disabled")
 
@@ -152,7 +152,7 @@ function setupShop() {
         <h6 class="center"><b>SHIELD</b></h6>
             <p><b>Description:</b><br>Štiti od neprijateljske štete tijekom jedne runde.</p>
             <p><b>Level:</b><br> 10 (MAX)</p>
-            <p><b>Shield percent:</b><br>${player.shield * 100}% </p>`
+            <p><b>Shield percent:</b><br>${player.shield * 10}% </p>`
     }
     
     //omogucava scrollanje

@@ -55,22 +55,22 @@ function upgradeHealth() {
 }
 
 function upgradeShield() {
-    if (player.coins >= Math.floor((player.shield) * 10000)) {
-        let povrdaKupnje = confirm(`Želite li kupiti SHIELD LEVEL ${Math.floor(player.shield * 10) + 1}?\nTo će koštati ${Math.floor((player.shield) * 10000)} novčića!`)
+    if (player.coins >= (player.shield * 1000)) {
+        let povrdaKupnje = confirm(`Želite li kupiti SHIELD LEVEL ${player.shield + 1}?\nTo će koštati ${player.shield * 1000} novčića!`)
 
         if (povrdaKupnje) {
             database.collection("Korisnici").doc(player.docId).update({
-                shieldLevel: Math.floor(player.shield * 10) + 1,
-                coins: player.coins - Math.floor((player.shield) * 10000)
+                shieldLevel: player.shield + 1,
+                coins: player.coins - player.shield * 1000
             })
 
-            player.coins -= Math.floor((player.shield) * 10000)
-            player.shield += 0.1
+            player.coins -= (player.shield) * 1000
+            player.shield += 1
             updateCoins()
 
             setupShop()
 
-            alert(`Ability SHIELD sada je level ${Math.floor(player.shield * 10)}!`)
+            alert(`Ability SHIELD sada je level ${player.shield}!`)
         }
     }
 
