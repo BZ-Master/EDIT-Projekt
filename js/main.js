@@ -5,7 +5,10 @@ function game() {
     let counter = document.getElementById("runda")
     counter.innerText = runda
 
-    let superChargeIndicator = document.getElementById("indicator")
+    let attackButton = document.getElementById("attack")
+    let healButton = document.getElementById("heal")
+    let shieldButton = document.getElementById("shield")
+    let superButton = document.getElementById("superAttack")
 
     class Entity {
         constructor(health, damage, heal) {
@@ -22,6 +25,11 @@ function game() {
 
         heal() {
             this.health += this.healIncrease
+            let razlika = 0
+            if (this.health > this.maxHealth) {
+                razlika = this.health - this.maxHealth
+                this.health -= razlika
+            }
         }
     }
 
@@ -44,8 +52,10 @@ function game() {
     class Player extends Entity {
         constructor(health, damage, shield, heal, superX) {
             super(health, damage, heal)
-            this.shieldPercent = shield / 10
-            this.superAttackMultiplier = superX
+            this.shieldPercent = 0
+            this.shieldCharge = shield
+            this.superAttackMultiplier = 3
+            this.superCharge = superX
             this.attackCount = 0
             this.update()
 
@@ -62,20 +72,21 @@ function game() {
         shield(e) {
             this.health += e.damage
             setTimeout(() => {
-                this.health -= Math.floor(e.damage * (1 - this.shieldPercent))
+                this.health -= Math.floor(e.damage * (1 - this.shieldPercent/this.shieldCharge))
             }, 2001)
         }
 
         superAttack(e) {
-            if (this.attackCount == 3) {
+            if (this.attackCount == this.superCharge) {
                 for (let i = 0; i < this.superAttackMultiplier; i++) {
                     this.attack(e)
                 }
                 this.attackCount = 0
-                superChargeIndicator.innerText = `Super charged: 0%`
+                superButton.innerText = `U 0%`
                 return true
             }
-            alert("Can't use super")
+
+            M.toast({ html: "Can't use super" })
             return false
         }
     }
@@ -114,11 +125,6 @@ function game() {
         }, 1000)
     }
 
-    let attackButton = document.getElementById("attack")
-    let healButton = document.getElementById("heal")
-    let shieldButton = document.getElementById("shield")
-    let superButton = document.getElementById("superAttack")
-
     function buttonAbility(bool) {
         if (bool) {
             attackButton.disabled = false
@@ -145,39 +151,41 @@ function game() {
 
     function enemyTurn() {
         if (e1.health <= 0) {
-            let coins = 50
-            let bonusCoins = Math.floor(runda / 10) * 25
+            setTimeout(() => {
+                let coins = 50
+                let bonusCoins = Math.floor(runda / 10) * 25
 
-            if (runda % 5 == 0) {
-                bonusCoins += (runda / 5) * 100
-            }
+                if (runda % 5 == 0) {
+                    bonusCoins += (runda / 5) * 100
+                }
 
-            player.coins += coins + bonusCoins
+                player.coins += coins + bonusCoins
 
-            database.collection("Korisnici").doc(player.docId).update({
-                coins: player.coins
-            })
+                database.collection("Korisnici").doc(player.docId).update({
+                    coins: player.coins
+                })
 
-            updateCoins()
+                updateCoins()
 
-            runda++
+                runda++
 
-            let enemyName = document.getElementById("enemyName")
+                let enemyName = document.getElementById("enemyName")
 
-            if (runda % 5 == 0) {
-                e1 = new Enemy((50 + (runda - 1) * 10) * 2, (10 + (runda - 1) * 10) * 2, (10 + (runda - 1) * 5) * 2)
-                enemyName.innerHTML = `<b>BOSS</b>`
-            }
+                if (runda % 5 == 0) {
+                    e1 = new Enemy((50 + (runda - 1) * 10) * 2, (10 + (runda - 1) * 10) + 50, Math.floor((10 + (runda - 1) * 5) * 3 / 2))
+                    enemyName.innerHTML = `<b>BOSS</b>`
+                }
 
-            else {
-                e1 = new Enemy(50 + (runda - 1) * 10, 10 + (runda - 1) * 10, 10 + (runda - 1) * 5)
-                enemyName.innerHTML = `<b>ENEMY</b>`
-            }
+                else {
+                    e1 = new Enemy(50 + (runda - 1) * 10, 10 + (runda - 1) * 10, 10 + (runda - 1) * 5)
+                    enemyName.innerHTML = `<b>ENEMY</b>`
+                }
 
-            e1.update()
-            counter.innerText = runda
-            alert(`Wave ${runda - 1} completed!\n+${coins + bonusCoins} coins`)
-            return
+                e1.update()
+                counter.innerText = runda
+                M.toast({ html: `Wave ${runda - 1} completed!\n+${coins + bonusCoins} coins` })
+                return
+            }, 1000)
         }
 
         else if (e1.health > 0 && p1.health > 0) {
@@ -185,7 +193,7 @@ function game() {
 
             let move = 1
 
-            if (e1.health + e1.healIncrease <= e1.maxHealth) {
+            if ((e1.health + e1.healIncrease <= e1.maxHealth) && (p1.health - e1.damage > 0) && (e1.health + e1.healIncrease > player.damage)) {
                 move = Math.floor(Math.random() * 2)
             }
 
@@ -224,38 +232,37 @@ function game() {
 
                     database.collection("Korisnici").doc(player.docId).update({
                         score: player.score
-                    })
+                    }).then(() => { getPlayers() })
                 }
-                getPlayers()
             }
         }, 4010)
 
         if (healCooldown > 0)
             healCooldown -= 1
+    }
 
-        if (shieldCooldown > 0)
-            shieldCooldown -= 1
+    function increaseShield() {
+        if (p1.shieldPercent < p1.shieldCharge) {
+            p1.shieldPercent += 1
+            shieldButton.innerText = `S ${Math.round((p1.shieldPercent / p1.shieldCharge) * 100)}%`
+        } 
     }
 
     attackButton.addEventListener("click", () => {
         p1.attack(e1)
-        if (p1.attackCount < 3) {
+        if (p1.attackCount < p1.superCharge) {
             p1.attackCount += 1
-            superChargeIndicator.innerText = `Super charged: ${Math.round((p1.attackCount / 3) * 100)}%`
+            superButton.innerText = `U ${Math.round((p1.attackCount / p1.superCharge) * 100)}%`
         }
         damagedEnemy()
         enemyTurn()
+        increaseShield()
     })
-    
+
     let healCooldown = 0
     healButton.addEventListener("click", () => {
-        if (p1.health + p1.healIncrease > p1.maxHealth) {
-            alert("Ne možete koristiti heal!")
-            return
-        }
-
         if (healCooldown != 0) {
-            alert(`Heal is on cooldown for ${healCooldown} round(s)!`)
+            M.toast({ html: `Heal is on cooldown for ${healCooldown} round(s)!` })
             return
         }
 
@@ -264,17 +271,19 @@ function game() {
         p1.update()
         healedPlayer()
         enemyTurn()
+        increaseShield()
     })
 
-    let shieldCooldown = 0
     shieldButton.addEventListener("click", () => {
-        if (shieldCooldown != 0) {
-            alert(`Heal is on cooldown for ${shieldCooldown} round(s)!`)
+        if (p1.shieldPercent == 0) {
+            M.toast({ html: `Shield charge is 0!` })
             return
         }
 
         p1.shield(e1)
-        shieldCooldown = 2
+        shieldButton.innerText = `S 0%`
+        p1.shieldPercent = 0
+
         enemyTurn()
     })
 
@@ -282,6 +291,7 @@ function game() {
         if (p1.superAttack(e1)) {
             damagedEnemy()
             enemyTurn()
+            increaseShield()
         }
         else
             return

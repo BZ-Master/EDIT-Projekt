@@ -5,16 +5,17 @@ function updateCoins() {
 }
 
 function upgradeAttack() {
-    if (player.coins >= player.damage * 10) {
-        let povrdaKupnje = confirm(`Želite li kupiti ATTACK LEVEL ${Math.floor(player.damage / 10) + 1}?\nTo će koštati ${player.damage * 10} novčića!`)
+    let price = player.damage * 10
+    if (player.coins >= price) {
+        let povrdaKupnje = confirm(`Želite li kupiti ATTACK LEVEL ${Math.floor(player.damage / 10) + 1}?\nTo će koštati ${price} novčića!`)
 
         if (povrdaKupnje) {
             database.collection("Korisnici").doc(player.docId).update({
                 damageLevel: Math.floor(player.damage / 10) + 1,
-                coins: player.coins - player.damage * 10
+                coins: player.coins - price
             })
 
-            player.coins -= player.damage * 10
+            player.coins -= price
             player.damage += 10
             updateCoins()
 
@@ -30,16 +31,17 @@ function upgradeAttack() {
 }
 
 function upgradeHealth() {
-    if (player.coins >= player.health * 5) {
-        let povrdaKupnje = confirm(`Želite li kupiti HEALTH LEVEL ${Math.floor(player.health / 50) + 1}?\nTo će koštati ${player.health * 5} novčića!`)
+    let price = player.health * 5
+    if (player.coins >= price) {
+        let povrdaKupnje = confirm(`Želite li kupiti HEALTH LEVEL ${Math.floor(player.health / 50) + 1}?\nTo će koštati ${price} novčića!`)
 
         if (povrdaKupnje) {
             database.collection("Korisnici").doc(player.docId).update({
                 healthLevel: Math.floor(player.health / 50) + 1,
-                coins: player.coins - player.health * 5
+                coins: player.coins - price
             })
 
-            player.coins -= player.health * 5
+            player.coins -= price
             player.health += 50
             updateCoins()
 
@@ -55,22 +57,23 @@ function upgradeHealth() {
 }
 
 function upgradeShield() {
-    if (player.coins >= (player.shield * 1000)) {
-        let povrdaKupnje = confirm(`Želite li kupiti SHIELD LEVEL ${player.shield + 1}?\nTo će koštati ${player.shield * 1000} novčića!`)
+    let price = (6 - player.shield) * 2000
+    if (player.coins >= price) {
+        let povrdaKupnje = confirm(`Želite li kupiti SHIELD LEVEL ${6 - player.shield + 1}?\nTo će koštati ${price} novčića!`)
 
         if (povrdaKupnje) {
             database.collection("Korisnici").doc(player.docId).update({
-                shieldLevel: player.shield + 1,
-                coins: player.coins - player.shield * 1000
+                shieldLevel: 6 - player.shield + 1,
+                coins: player.coins - price
             })
 
-            player.coins -= (player.shield) * 1000
-            player.shield += 1
+            player.coins -= price
+            player.shield -= 1
             updateCoins()
 
             setupShop()
 
-            alert(`Ability SHIELD sada je level ${player.shield}!`)
+            alert(`Ability SHIELD sada je level ${6 - player.shield}!`)
         }
     }
 
@@ -80,22 +83,24 @@ function upgradeShield() {
 }
 
 function upgradeSuper() {
-    if (player.coins >= player.super * 200) {
-        let povrdaKupnje = confirm(`Želite li kupiti SUPER LEVEL ${player.super - 1}?\nTo će koštati ${player.super * 200} novčića!`)
+    let price = (7 - player.super) * 2500
+    if (player.coins >= price) {
+        let povrdaKupnje = confirm(`Želite li kupiti SUPER LEVEL ${7 - player.super + 1}?\nTo će koštati ${price} novčića!`)
 
         if (povrdaKupnje) {
             database.collection("Korisnici").doc(player.docId).update({
-                superLevel: player.super,
-                coins: player.coins - player.super * 200
+                superLevel: 7 - player.super + 1,
+                coins: player.coins - price
             })
 
-            player.coins -= player.super * 200
-            player.super += 1
+            player.coins -= price
+            player.super -= 1
+            console.log(player.super)
             updateCoins()
 
             setupShop()
 
-            alert(`Ability SUPER sada je level ${player.super - 1}!`)
+            alert(`Ability SUPER sada je level ${7 - player.super}!`)
         }
     }
 
@@ -104,18 +109,18 @@ function upgradeSuper() {
     }
 }
 
-
 function upgradeHeal() {
-    if (player.coins >= player.heal * 10) {
-        let povrdaKupnje = confirm(`Želite li kupiti HEAL LEVEL ${Math.floor(player.heal/10) + 1}?\nTo će koštati ${player.super * 200} novčića!`)
+    let price = player.heal * 20
+    if (player.coins >= price) {
+        let povrdaKupnje = confirm(`Želite li kupiti HEAL LEVEL ${Math.floor(player.heal/10) + 1}?\nTo će koštati ${price} novčića!`)
 
         if (povrdaKupnje) {
             database.collection("Korisnici").doc(player.docId).update({
                 healLevel: Math.floor(player.heal / 10) + 1,
-                coins: player.coins - player.heal * 10
+                coins: player.coins - price
             })
 
-            player.coins -= player.heal * 10
+            player.coins -= price
             player.heal += 10
             updateCoins()
 
