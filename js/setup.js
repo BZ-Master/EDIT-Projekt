@@ -94,7 +94,7 @@ function setupShop() {
             <div class="card">
                 <div class="card-content center">
                     <h6 class="center"><b>ATTACK</b></h6>
-                    <p><b>Description:</b><br>Napadni neprijatelja.</p>
+                    <p><b>Description:</b><br>Napadni neprijatelja i napravi mu štetu.</p>
                     <p><b>Level:</b><br> ${Math.floor(player.damage / 10)}</p>
                     <p><b>Damage:</b><br> ${player.damage}</p>
                     <p><b>Cost:</b><br> ${(player.damage) * 10}</p>
@@ -107,7 +107,7 @@ function setupShop() {
             <div class="card">
                 <div class="card-content center">
                     <h6 class="center"><b>HEAL</b></h6>
-                    <p><b>Description:</b><br>Povećaj si health.</p>
+                    <p><b>Description:</b><br>Povećaj si health za ${player.heal}.</p>
                     <p><b>Level:</b><br> ${Math.floor(player.heal / 10)}</p>
                     <p><b>Heal:</b><br> ${player.heal}</p>
                     <p><b>Cost:</b><br> ${(player.heal) * 20}</p>
@@ -120,10 +120,10 @@ function setupShop() {
             <div class="card">
                 <div class="card-content center" id="shieldCard">
                     <h6 class="center"><b>SHIELD</b></h6>
-                    <p><b>Description:</b><br>Štiti od neprijateljske štete tijekom jedne runde.</p>
+                    <p><b>Description:</b><br>Štiti od određenog postotka neprijateljske štete. Upgrade ubrzava punjenje ovog abilityja.</p>
                     <p><b>Level:</b><br> ${6 - player.shield} (max 5)</p>
                     <p><b>Rounds to charge fully:</b><br> ${player.shield}</p>
-                    <p><b>Cost:</b><br> ${(6 - player.shield) * 2000}</p>
+                    <p><b>Cost:</b><br> ${2 ** (6 - player.shield + 1) * 1000}</p>
                 </div>
                 <a class="waves-effect waves-light btn col s12 green" id="shieldUpgradeButton" onclick=upgradeShield()><i class="material-icons left" >arrow_upward</i>upgrade</a>
             </div>
@@ -137,7 +137,7 @@ function setupShop() {
                     <p><b>Level:</b><br> ${7 - player.super} (max 5)</p>
                     <p><b>Attack multiplier:</b><br> 3</p>
                     <p><b>Attacks to charge:</b><br> ${player.super}</p>
-                    <p><b>Cost:</b><br> ${(7 - player.super) * 2500}</p>
+                    <p><b>Cost:</b><br> ${2 ** (7 - player.super + 1) * 1000 + (7 - player.super + 1) * 1000}</p>
                 </div>
                 <a class="waves-effect waves-light btn col s12 green" onclick=upgradeSuper() id="superUpgradeButton"><i class="material-icons left">arrow_upward</i>upgrade</a>
             </div>
@@ -151,9 +151,9 @@ function setupShop() {
         let kartica = document.getElementById("shieldCard")
         kartica.innerHTML = `                    
         <h6 class="center"><b>SHIELD</b></h6>
-        <p><b>Description:</b><br> Štiti od neprijateljske štete tijekom jedne runde.</p>
-        <p><b>Level:</b><br> 5 (MAX)</p>
-        <p><b>Rounds to charge fully:</b><br> 1</p>`
+        <p><b>Description:</b><br>Štiti od određenog postotka neprijateljske štete. Upgrade ubrzava punjenje ovog abilityja.</p>
+        <p><b>Level:</b><br>5 (MAX)</p>
+        <p><b>Rounds to charge fully:</b><br>1</p>`
     }
 
     if (player.super == 2) {

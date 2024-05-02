@@ -57,7 +57,7 @@ function upgradeHealth() {
 }
 
 function upgradeShield() {
-    let price = (6 - player.shield) * 2000
+    let price = 2**(6 - player.shield + 1) * 1000
     if (player.coins >= price) {
         let povrdaKupnje = confirm(`Želite li kupiti SHIELD LEVEL ${6 - player.shield + 1}?\nTo će koštati ${price} novčića!`)
 
@@ -83,7 +83,7 @@ function upgradeShield() {
 }
 
 function upgradeSuper() {
-    let price = (7 - player.super) * 2500
+    let price = 2 ** (7 - player.super + 1) * 1000 + (7 - player.super + 1) * 1000
     if (player.coins >= price) {
         let povrdaKupnje = confirm(`Želite li kupiti SUPER LEVEL ${7 - player.super + 1}?\nTo će koštati ${price} novčića!`)
 

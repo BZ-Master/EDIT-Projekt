@@ -70,10 +70,7 @@ function game() {
         }
 
         shield(e) {
-            this.health += e.damage
-            setTimeout(() => {
-                this.health -= Math.floor(e.damage * (1 - this.shieldPercent/this.shieldCharge))
-            }, 2001)
+            this.health += Math.floor(e.damage * (this.shieldPercent/this.shieldCharge))
         }
 
         superAttack(e) {
@@ -151,6 +148,7 @@ function game() {
 
     function enemyTurn() {
         if (e1.health <= 0) {
+            buttonAbility(false)
             setTimeout(() => {
                 let coins = 50
                 let bonusCoins = Math.floor(runda / 10) * 25
@@ -184,6 +182,8 @@ function game() {
                 e1.update()
                 counter.innerText = runda
                 M.toast({ html: `Wave ${runda - 1} completed!\n+${coins + bonusCoins} coins` })
+
+                buttonAbility(true)
                 return
             }, 1000)
         }

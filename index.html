@@ -4,7 +4,7 @@
 <head>
     <meta charset='utf-8'>
     <meta http-equiv='X-UA-Compatible' content='IE=edge'>
-    <title>Dungeon</title>
+    <title>The Deepest Dungeon</title>
     <meta name='viewport' content='width=device-width, initial-scale=1'>
     <link rel="icon" type="image/x-icon" href="media/logo.png">
     <link rel='stylesheet' type='text/css' media='screen' href='main.css'>
@@ -24,13 +24,13 @@
         <div class="nav-wrapper grey darken-4">
             <a href="#" data-target="slide-out" class="sidenav-trigger show-on-medium-and-up"><i
                     class="material-icons">menu</i></a>
-            <a href="#" class="brand-logo center hide-on-small-only">Dungeon</a>
+            <a href="#" class="brand-logo center hide-on-small-only"><i class="material-icons">videogame_asset</i></a>
         </div>
     </nav>
 
 
     <ul class="sidenav" id="slide-out">
-        <h5 class="center"><b>Dungeon</b></h5>
+        <h5 class="center"><b>The Deepest Dungeon</b></h5>
         <li><a href="#instructions">Instructions</a></li>
         <li><a href="#game">Battle</a></li>
         <li><a href="#upgrades">Upgrades</a></li>
@@ -43,7 +43,7 @@
         <div class="section no-pad-bot">
             <div class="container">
                 <br><br>
-                <h1 class="center white-text"><b>DUNGEON</b></h1>
+                <h1 class="center white-text"><b>THE DEEPEST DUNGEON</b></h1>
                 <h5 class="center white-text">Igra u kojoj se borite protiv beskonačnih valova neprijatelja.
                     Ostvarite
                     što bolji rezultat da bi se plasirali na ljestvicu najboljih igrača.</h5>
@@ -73,7 +73,7 @@
         <ul class="collapsible">
             <li>
                 <div class="collapsible-header"><i class="material-icons">book</i>General</div>
-                <div class="collapsible-body"><span>Dobro došli u <i>Dungeon</i>, igru u kojoj se borite protiv
+                <div class="collapsible-body"><span>Dobro došli u <i>The Deepest Dungeon</i>, igru u kojoj se borite protiv
                         beskonačnih valova neprijatelja kako bi ostvarili što veći rezultat i plasirali se na vrh
                         ljestvice.<br><br>Kako bi igrali igru potrebna je prijava.<br><br>Nakon prijave u okviru
                         <i>Upgrades</i>
@@ -90,28 +90,31 @@
             </li>
             <li>
                 <div class="collapsible-header"><i class="material-icons">whatshot</i>Abilities</div>
-                <div class="collapsible-body"><span>
+                <div class="collapsible-body">
+                    <span>
                         Postoje 4 abilityja: attack, heal, shield i super attack. Možete aktivirati samo jedan po svojoj
                         rundi!<br><br>
-                        Attack se aktivira na gumb: <button
-                            class="btn waves-effect waves-light grey darken-2">A</button><br>
+                        Attack se aktivira na gumb: <button class="btn waves-effect waves-light grey darken-2">A</button><br>
                         Neprijatelju zadajete damage ovisno o Vašem Attack Levelu. Damage koji dajete je prikazan ispod
                         Vašeg health bara!<br><br>
-                        Shield se aktivira na gumb: <button
-                            class="btn waves-effect waves-light grey darken-2">S</button><br>
-                        Idući nepijateljev napad zaštit ćete se za postotak štete koji ovisi o Vašem Shield Levelu.
-                        Nakon što ga aktivirate ne možete ga koristiti 1 rundu!<br><br>
-                        Heal se aktivira na gumb: <button
-                            class="btn waves-effect waves-light grey darken-2">H</button><br>
+                        Heal se aktivira na gumb: <button class="btn waves-effect waves-light grey darken-2">H</button><br>
                         Vaš health se uvećava za vrijednost koja ovisi o Vašem Heal Levelu. Kada aktivirate ovaj ability
-                        ne možete ga koristiti 2 runde. Također ga ne možete aktivirati ako će vrijednost healtha preći
-                        vrijednost vezanu za Vaš Health Level!<br><br>
-                        Super Attack se aktivira na gumb: <button
-                            class="btn waves-effect waves-light grey darken-2">SA</button><br>
-                        Super attack možete aktivirati nakon što 3 aktivirate Attack. Kada ga aktivirate radite štetu
-                        koja je uvećana za X puta, ovisno o levelu abilityja. Nakon aktivacije opet morate 3 puta
-                        aktivirati Attack da bi ste ga ponovno aktivirali.
-                    </span></div>
+                        ne možete ga koristiti 2 runde. Vaš health ne može preći maksimalnu vrijednost zadanu health
+                        levelom!<br><br>
+                        Shield se aktivira na gumb: <button class="btn waves-effect waves-light grey darken-2">S 0%</button><br>
+                        Idući nepijateljev napad zaštit ćete se za postotak štete. Postotak se uvećava svaku rundu.
+                        Brzina punjenja štita ovisi o Vašem shield levelu. Štit možete aktivirati bilo kada osim kada je
+                        charge jednak 0, a kada ga aktivirate zaštit će vas za postotak prikazan na gumbu. Nakon
+                        aktivacije charge se vraća na 0%. Maksimalni level je 5 kada se shield u potpunosti napuni nakon
+                        1 runde.<br><br>
+                        Super Attack se aktivira na gumb: <button class="btn waves-effect waves-light grey darken-2">U 0%</button><br>
+                        Super attack možete aktivirati nakon što određen broj puta aktivirate Attack. Nakon aktivacije
+                        Vašem neprijatelju radite trostruku štetu. Broj potrebnih napada ovisi o Vašem super levelu. Što
+                        je veći level manji je broj potrebnih rundi. Maksimalni level je 5 kada je broj potrebnih rundi
+                        2!<br><br>
+                        Abilityji se unaprijeđuju u odjeljku <i>Upgrades</i> ispod okvira za igru!
+                    </span>
+                </div>
             </li>
             <li>
                 <div class="collapsible-header"><i class="material-icons">attach_money</i>Upgrades</div>
@@ -204,8 +207,8 @@
         <div class="container">
             <div class="row">
                 <div class="col l6 s12">
-                    <h5 class="white-text">Dungeon</h5>
-                    <p class="grey-text text-lighten-4">Igru je izradio Bartul Zavorović kao projekt za Edit Napredni
+                    <h5 class="white-text">The Deepest Dungeon</h5>
+                    <p class="grey-text text-lighten-4">Igru je izradio Bartul Zavorović kao projekt za Edit Code School Napredni
                         tečaj.</p>
                 </div>
                 <div class="col l4 offset-l2 s12">
