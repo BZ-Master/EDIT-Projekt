@@ -232,7 +232,9 @@ function game() {
 
                     database.collection("Korisnici").doc(player.docId).update({
                         score: player.score
-                    }).then(() => { getPlayers() })
+                    }).then(() => {
+                        getPlayers()
+                    })
                 }
             }
         }, 4010)

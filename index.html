@@ -73,20 +73,20 @@
         <ul class="collapsible">
             <li>
                 <div class="collapsible-header"><i class="material-icons">book</i>General</div>
-                <div class="collapsible-body"><span>Dobro došli u <i>The Deepest Dungeon</i>, igru u kojoj se borite protiv
+                <div class="collapsible-body">
+                    <span>Dobro došli u <i>The Deepest Dungeon</i>, igru u kojoj se borite protiv
                         beskonačnih valova neprijatelja kako bi ostvarili što veći rezultat i plasirali se na vrh
                         ljestvice.<br><br>Kako bi igrali igru potrebna je prijava.<br><br>Nakon prijave u okviru
-                        <i>Upgrades</i>
-                        pojavit će Vam se mogućnost unaprijeđenja specijalnih moći i health bodova. Obavite sva
-                        unaprijeđenja prije nego što kliknete <i>Pokreni igru</i> jer tijekom igre ne možete to
+                        <i>Upgrades</i> pojavit će Vam se mogućnost unaprijeđenja specijalnih moći i health bodova. 
+                        Obavite sva unaprijeđenja prije nego što kliknete <i>Pokreni igru</i> jer tijekom igre ne možete to
                         činiti.<br><br>Kada pokrenete igru stvorit će se prvi neprijatelj kojeg morate pobijediti kako
-                        bi
-                        ostvarili +1 score. Kada ga pobijedite stvara se još jedan, ali ovog puta jači, neprijatelj.
+                        bi ostvarili +1 score. Kada ga pobijedite stvara se još jedan, ali ovog puta jači, neprijatelj.
                         Svaku petu rundu dočekat će Vas Boss koji će biti dvostruko jači od običnog neprijatelja koji se
                         stvara u toj rundi.<br><br>Za svakog pobijeđenog neprijatelja dobivate novčiće koje možete
-                        potrošiti
-                        na unaprijeđenja svoga <i>healtha</i> i abilityja. Broj novčića za svakog pobijeđenog
-                        neprijetelja se uvećava svakih 10 rundi. Pobijeđeni Boss također daje više novčića.</span></div>
+                        potrošiti na unaprijeđenja svoga <i>healtha</i> i abilityja. Broj novčića za svakog pobijeđenog
+                        neprijetelja se uvećava svakih 10 rundi. Pobijeđeni Boss također daje više novčića.
+                    </span>
+                </div>
             </li>
             <li>
                 <div class="collapsible-header"><i class="material-icons">whatshot</i>Abilities</div>
@@ -118,10 +118,14 @@
             </li>
             <li>
                 <div class="collapsible-header"><i class="material-icons">attach_money</i>Upgrades</div>
-                <div class="collapsible-body"><span>Nakon prijave u odjeljku <i>Upgrades</i> možete unaprijediti
+                <div class="collapsible-body">
+                    <span>
+                        Nakon prijave u odjeljku <i>Upgrades</i> možete unaprijediti
                         abilityje i health pomoću stečenih novčića. Na vrhu se nalazi health upgrade, a ispod njega
                         redom sljedeći abilityji: attack, shield, heal, super attack. Kada pokrenete igru odjeljak se
-                        zatvara i ne možete raditi upgrade. Kada završite igru odjeljak se opet otvara.</span></div>
+                        zatvara i ne možete raditi upgrade. Kada završite igru odjeljak se opet otvara.
+                    </span>
+                </div>
             </li>
         </ul>
     </div>
@@ -196,9 +200,24 @@
             </tbody>
         </table>
         <div class="row center">
-            <a href="leaderboard.html">Cijeli poredak pogledajte ovdje...</a>
+            <a href="#fullLeaderboard" class="modal-trigger" onclick=showAllPlayers()>Cijeli poredak pogledajte ovdje...</a>
         </div>
+    </div>
 
+    <div class="modal" id="fullLeaderboard">
+        <div class="container">
+            <table>
+                <thead>
+                    <tr>
+                        <th>#</th>
+                        <th>Username</th>
+                        <th>Score</th>
+                    </tr>
+                </thead>
+                <tbody id="ljestvicaFull">
+                </tbody>
+            </table>
+        </div>
     </div>
 
     <br>
@@ -208,7 +227,8 @@
             <div class="row">
                 <div class="col l6 s12">
                     <h5 class="white-text">The Deepest Dungeon</h5>
-                    <p class="grey-text text-lighten-4">Igru je izradio Bartul Zavorović kao projekt za Edit Code School Napredni
+                    <p class="grey-text text-lighten-4">Igru je izradio Bartul Zavorović kao projekt za Edit Code School
+                        Napredni
                         tečaj.</p>
                 </div>
                 <div class="col l4 offset-l2 s12">

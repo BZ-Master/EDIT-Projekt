@@ -1,9 +1,21 @@
 M.AutoInit()
 
 let players = []
-let tablica = document.getElementById("ljestvica")
+
+function showAllPlayers() {
+    let punaTablica = document.getElementById("ljestvicaFull")
+    players.forEach(el => {
+        punaTablica.innerHTML += `
+        <tr>
+            <td>${players.indexOf(el) + 1}</td>
+            <td>${el.username}</td>
+            <td>${el.score}</td>
+        </tr>`
+    })
+}
 
 function showTopPlayers() {
+    let tablica = document.getElementById("ljestvica")
     for (let i = 0; i < 10; i++) {
         tablica.innerHTML += `
         <tr>
@@ -30,7 +42,6 @@ function processPlayers() {
 
 function getPlayers() {
     players = []
-    tablica.innerHTML = ``
     database.collection("Korisnici").get().then((querySnapshot => {
         querySnapshot.forEach(doc => {
             players.push({
