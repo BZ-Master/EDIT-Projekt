@@ -4,6 +4,7 @@ let players = []
 
 function showAllPlayers() {
     let punaTablica = document.getElementById("ljestvicaFull")
+    punaTablica.innerHTML = ``
     players.forEach(el => {
         punaTablica.innerHTML += `
         <tr>
@@ -16,6 +17,7 @@ function showAllPlayers() {
 
 function showTopPlayers() {
     let tablica = document.getElementById("ljestvica")
+    tablica.innerHTML = ``
     for (let i = 0; i < 10; i++) {
         tablica.innerHTML += `
         <tr>
