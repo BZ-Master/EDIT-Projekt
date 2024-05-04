@@ -54,6 +54,7 @@ function game() {
             super(health, damage, heal)
             this.shieldPercent = 0
             this.shieldCharge = shield
+            this.activeShield = false
             this.superAttackMultiplier = 3
             this.superCharge = superX
             this.attackCount = 0
@@ -198,6 +199,9 @@ function game() {
             }
 
             if (move) {
+                if (p1.activeShield)
+                    p1.shield(e1)
+
                 setTimeout(() => {
                     damagedPlayer()
                 }, 3000)
@@ -282,11 +286,11 @@ function game() {
             return
         }
 
-        p1.shield(e1)
+        p1.activeShield = true
+        enemyTurn()
         shieldButton.innerText = `S 0%`
         p1.shieldPercent = 0
-
-        enemyTurn()
+        p1.activeShield = false
     })
 
     superButton.addEventListener("click", () => {
