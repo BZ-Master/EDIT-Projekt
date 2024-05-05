@@ -28,6 +28,7 @@ function showTopPlayers() {
     }
 }
 
+//sortira igrace po rezultatu
 function processPlayers() {
     let t
     for (let i = 0; i < players.length; i++) {

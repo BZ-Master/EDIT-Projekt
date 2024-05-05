@@ -96,6 +96,7 @@ document.getElementById("login").addEventListener("click", () => {
 
             document.getElementById("logInButton").innerHTML = ``
 
+            //zatvara modal za prijavu
             setTimeout(() => {
                 let modal = document.getElementById('prijava')
                 let instance = M.Modal.getInstance(modal)
@@ -117,7 +118,7 @@ document.getElementById("register").addEventListener("click", () => {
     let pass = document.getElementById("password").value
 
     if (name.trim() == "" || pass.trim() == "") {
-        alert("Username i/ili password ne mogu biti prazni!")
+        alert("Username i password ne mogu biti prazni!")
         return
     }
 

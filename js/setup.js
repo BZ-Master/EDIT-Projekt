@@ -170,7 +170,7 @@ function setupShop() {
         <p><b>Attacks to charge:</b><br>${player.super}</p>`
     }
 
-    //omogucava scrollanje
+    //omogucava scrollanje nakon izvrsenja funkcije
     document.getElementById("body").removeAttribute("style")
 }
 

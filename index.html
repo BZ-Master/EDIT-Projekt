@@ -28,7 +28,6 @@
         </div>
     </nav>
 
-
     <ul class="sidenav" id="slide-out">
         <h5 class="center"><b>The Deepest Dungeon</b></h5>
         <li><a href="#instructions">Instructions</a></li>
@@ -77,12 +76,13 @@
                     <span>Dobro došli u <i>The Deepest Dungeon</i>, igru u kojoj se borite protiv
                         beskonačnih valova neprijatelja kako bi ostvarili što veći rezultat i plasirali se na vrh
                         ljestvice.<br><br>Kako bi igrali igru potrebna je prijava.<br><br>Nakon prijave u okviru
-                        <i>Upgrades</i> pojavit će Vam se mogućnost unaprijeđenja specijalnih moći i health bodova. 
+                        <i>Upgrades</i> pojavit će Vam se mogućnost unaprijeđenja specijalnih moći i health bodova.
                         Obavite sva unaprijeđenja prije nego što kliknete <i>Pokreni igru</i> jer tijekom igre ne možete to
                         činiti.<br><br>Kada pokrenete igru stvorit će se prvi neprijatelj kojeg morate pobijediti kako
                         bi ostvarili +1 score. Kada ga pobijedite stvara se još jedan, ali ovog puta jači, neprijatelj.
                         Svaku petu rundu dočekat će Vas Boss koji će biti dvostruko jači od običnog neprijatelja koji se
-                        stvara u toj rundi.<br><br>Za svakog pobijeđenog neprijatelja dobivate novčiće koje možete
+                        stvara u toj rundi. Svi neprijatelji posjeduju i heal ability osim standardnog
+                        attacka.<br><br>Za svakog pobijeđenog neprijatelja dobivate novčiće koje možete
                         potrošiti na unaprijeđenja svoga <i>healtha</i> i abilityja. Broj novčića za svakog pobijeđenog
                         neprijetelja se uvećava svakih 10 rundi. Pobijeđeni Boss također daje više novčića.
                     </span>
@@ -94,20 +94,24 @@
                     <span>
                         Postoje 4 abilityja: attack, heal, shield i super attack. Možete aktivirati samo jedan po svojoj
                         rundi!<br><br>
-                        Attack se aktivira na gumb: <button class="btn waves-effect waves-light grey darken-2">A</button><br>
+                        Attack se aktivira na gumb: <button
+                            class="btn waves-effect waves-light grey darken-2">A</button><br>
                         Neprijatelju zadajete damage ovisno o Vašem Attack Levelu. Damage koji dajete je prikazan ispod
                         Vašeg health bara!<br><br>
-                        Heal se aktivira na gumb: <button class="btn waves-effect waves-light grey darken-2">H</button><br>
+                        Heal se aktivira na gumb: <button
+                            class="btn waves-effect waves-light grey darken-2">H</button><br>
                         Vaš health se uvećava za vrijednost koja ovisi o Vašem Heal Levelu. Kada aktivirate ovaj ability
                         ne možete ga koristiti 2 runde. Vaš health ne može preći maksimalnu vrijednost zadanu health
                         levelom!<br><br>
-                        Shield se aktivira na gumb: <button class="btn waves-effect waves-light grey darken-2">S 0%</button><br>
+                        Shield se aktivira na gumb: <button class="btn waves-effect waves-light grey darken-2">S
+                            0%</button><br>
                         Idući nepijateljev napad zaštit ćete se za postotak štete. Postotak se uvećava svaku rundu.
                         Brzina punjenja štita ovisi o Vašem shield levelu. Štit možete aktivirati bilo kada osim kada je
                         charge jednak 0, a kada ga aktivirate zaštit će vas za postotak prikazan na gumbu. Nakon
                         aktivacije charge se vraća na 0%. Maksimalni level je 5 kada se shield u potpunosti napuni nakon
                         1 runde.<br><br>
-                        Super Attack se aktivira na gumb: <button class="btn waves-effect waves-light grey darken-2">U 0%</button><br>
+                        Super Attack se aktivira na gumb: <button class="btn waves-effect waves-light grey darken-2">U
+                            0%</button><br>
                         Super attack možete aktivirati nakon što određen broj puta aktivirate Attack. Nakon aktivacije
                         Vašem neprijatelju radite trostruku štetu. Broj potrebnih napada ovisi o Vašem super levelu. Što
                         je veći level manji je broj potrebnih rundi. Maksimalni level je 5 kada je broj potrebnih rundi
@@ -122,7 +126,7 @@
                     <span>
                         Nakon prijave u odjeljku <i>Upgrades</i> možete unaprijediti
                         abilityje i health pomoću stečenih novčića. Na vrhu se nalazi health upgrade, a ispod njega
-                        redom sljedeći abilityji: attack, shield, heal, super attack. Kada pokrenete igru odjeljak se
+                        redom sljedeći abilityji: attack, heal, shield, super attack. Kada pokrenete igru odjeljak se
                         zatvara i ne možete raditi upgrade. Kada završite igru odjeljak se opet otvara.
                     </span>
                 </div>
@@ -183,7 +187,6 @@
         <p class="center">Ako ne vidite svoje moći potrebna je <a href="#game">prijava</a>!</p>
     </div>
 
-
     <br>
 
     <div id="leaderboard" class="container">
@@ -200,7 +203,8 @@
             </tbody>
         </table>
         <div class="row center">
-            <a href="#fullLeaderboard" class="modal-trigger" onclick=showAllPlayers()>Cijeli poredak pogledajte ovdje...</a>
+            <a href="#fullLeaderboard" class="modal-trigger" onclick=showAllPlayers()>Cijeli poredak pogledajte
+                ovdje...</a>
         </div>
     </div>
 
@@ -228,8 +232,7 @@
                 <div class="col l6 s12">
                     <h5 class="white-text">The Deepest Dungeon</h5>
                     <p class="grey-text text-lighten-4">Igru je izradio Bartul Zavorović kao projekt za Edit Code School
-                        Napredni
-                        tečaj.</p>
+                        Napredni tečaj.</p>
                 </div>
                 <div class="col l4 offset-l2 s12">
                     <h5 class="white-text">Linkovi</h5>
