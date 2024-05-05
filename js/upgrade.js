@@ -5,7 +5,7 @@ function updateCoins() {
 }
 
 function upgradeAttack() {
-    let price = player.damage * 10
+    let price = (Math.ceil((player.damage) ** 1.5 / 80)) * 100
     if (player.coins >= price) {
         let povrdaKupnje = confirm(`Želite li kupiti ATTACK LEVEL ${Math.floor(player.damage / 10) + 1}?\nTo će koštati ${price} novčića!`)
 
@@ -31,7 +31,7 @@ function upgradeAttack() {
 }
 
 function upgradeHealth() {
-    let price = player.health * 5
+    let price = (Math.ceil((player.health / 5) ** 1.5 / 80)) * 150
     if (player.coins >= price) {
         let povrdaKupnje = confirm(`Želite li kupiti HEALTH LEVEL ${Math.floor(player.health / 50) + 1}?\nTo će koštati ${price} novčića!`)
 
@@ -57,7 +57,7 @@ function upgradeHealth() {
 }
 
 function upgradeShield() {
-    let price = 2**(6 - player.shield + 1) * 1000
+    let price = 2 ** (6 - player.shield + 1) * 1000
     if (player.coins >= price) {
         let povrdaKupnje = confirm(`Želite li kupiti SHIELD LEVEL ${6 - player.shield + 1}?\nTo će koštati ${price} novčića!`)
 
@@ -110,9 +110,9 @@ function upgradeSuper() {
 }
 
 function upgradeHeal() {
-    let price = player.heal * 20
+    let price = (Math.ceil((player.heal) ** 1.5 / 80)) * 80
     if (player.coins >= price) {
-        let povrdaKupnje = confirm(`Želite li kupiti HEAL LEVEL ${Math.floor(player.heal/10) + 1}?\nTo će koštati ${price} novčića!`)
+        let povrdaKupnje = confirm(`Želite li kupiti HEAL LEVEL ${Math.floor(player.heal / 10) + 1}?\nTo će koštati ${price} novčića!`)
 
         if (povrdaKupnje) {
             database.collection("Korisnici").doc(player.docId).update({

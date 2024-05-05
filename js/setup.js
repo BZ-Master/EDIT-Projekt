@@ -77,7 +77,7 @@ function setupShop() {
                     <p><b>Description:</b><br>Količina healtha koju igrač ima na početku runde i koju ne može prijeći.</p>
                     <p><b>Level:</b><br> ${Math.floor(player.health / 50)}
                     <p><b>Amount:</b><br> ${player.health}</p>
-                    <p><b>Cost:</b><br> ${(player.health) * 5}</p>
+                    <p><b>Cost:</b><br> ${(Math.ceil((player.health / 5) ** 1.5 / 80)) * 150}</p>
                 </div>
                 <a class="waves-effect waves-light btn col s12 green" onclick=upgradeHealth()><i class="material-icons left">arrow_upward</i>upgrade</a>
             </div>
@@ -97,7 +97,7 @@ function setupShop() {
                     <p><b>Description:</b><br>Napadni neprijatelja i napravi mu štetu.</p>
                     <p><b>Level:</b><br> ${Math.floor(player.damage / 10)}</p>
                     <p><b>Damage:</b><br> ${player.damage}</p>
-                    <p><b>Cost:</b><br> ${(player.damage) * 10}</p>
+                    <p><b>Cost:</b><br> ${(Math.ceil((player.damage) ** 1.5 / 80)) * 100}</p>
                 </div>
                 <a class="waves-effect waves-light btn col s12 green" onclick=upgradeAttack()><i class="material-icons left" >arrow_upward</i>upgrade</a>
             </div>
@@ -110,7 +110,7 @@ function setupShop() {
                     <p><b>Description:</b><br>Povećaj si health za ${player.heal}.</p>
                     <p><b>Level:</b><br> ${Math.floor(player.heal / 10)}</p>
                     <p><b>Heal:</b><br> ${player.heal}</p>
-                    <p><b>Cost:</b><br> ${(player.heal) * 20}</p>
+                    <p><b>Cost:</b><br> ${(Math.ceil((player.heal) ** 1.5 / 80)) * 80}</p>
                 </div>
                 <a class="waves-effect waves-light btn col s12 green" onclick=upgradeHeal()><i class="material-icons left">arrow_upward</i>upgrade</a>
             </div>
