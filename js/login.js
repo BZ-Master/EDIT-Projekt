@@ -85,7 +85,7 @@ document.getElementById("login").addEventListener("click", () => {
 
             document.getElementById("coinCounterFrame").innerHTML = `
                 <div id="coinCounter" class="card col s4 m2 l2 center">
-                <p><i class="material-icons">attach_money</i>${player.coins}</p>
+                    <p><i class="material-icons">attach_money</i>${player.coins}</p>
                 </div>`
 
             document.getElementById("logOutButton").innerHTML = `
